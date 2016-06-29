@@ -1,6 +1,6 @@
 # iOS-ToolClassDemo
 ###开发工具类
-目前包含一下工具类
+目前包含一下工具类：
 
 1.NSString的扩展类
 
