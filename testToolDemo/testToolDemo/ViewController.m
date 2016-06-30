@@ -10,11 +10,11 @@
 #import "UIView+tool.h"
 #import "NSString+tool.h"
 #import "UIImage+tool.h"
+#import "UIView+EmptyShow.h"
 
-
-
-
-@interface ViewController ()
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)NSMutableArray *dataArray;
 
 @end
 
@@ -23,6 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     VDLog(@"很好用的");
+    
+    self.title = @"傻傻的你";
+    _dataArray = [NSMutableArray array];
+    
+    _tableView = [[UITableView alloc]initWithFrame:self.view.frame];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorStyle = NO;
+    [self.view addSubview:_tableView];
 //    UIView *bgView = [[UIView alloc]init];
 //    bgView.backgroundColor = [UIColor orangeColor];
 //    [self.view addSubview:bgView];
@@ -87,5 +96,31 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [_tableView emptyDataCheckWithType:ViewDataTypeMyOrder andHaveData:NO andReloadBlock:^{
+        [_dataArray addObjectsFromArray:@[@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~"]];
+        [self.tableView reloadData];
+    }];
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _dataArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc]init];
+    cell.textLabel.text = _dataArray[indexPath.row];
+    return cell;
+}
+
+
 
 @end
