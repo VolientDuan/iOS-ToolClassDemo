@@ -1,5 +1,5 @@
 # iOS-ToolClassDemo
-###开发工具类
+###开发工具类(可以直接取出工程目录***[tool](https://github.com/VolientDuan/iOS-ToolClassDemo/tree/master/testToolDemo/testToolDemo/tool)***文件下的类使用)
 #####宏定义的使用
 
 ######一、pch文件中宏的使用
