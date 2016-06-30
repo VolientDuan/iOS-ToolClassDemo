@@ -17,6 +17,7 @@
 		2C9381BB1D1A94E6009F41C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9381B91D1A94E6009F41C2 /* Main.storyboard */; };
 		2C9381BD1D1A94E6009F41C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C9381BC1D1A94E6009F41C2 /* Assets.xcassets */; };
 		2C9381C01D1A94E6009F41C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9381BE1D1A94E6009F41C2 /* LaunchScreen.storyboard */; };
+		2CFAB80C1D24F8AD002563AF /* UIView+EmptyShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAB80B1D24F8AD002563AF /* UIView+EmptyShow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		2C9381BC1D1A94E6009F41C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C9381BF1D1A94E6009F41C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C9381C11D1A94E6009F41C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CFAB80A1D24F8AD002563AF /* UIView+EmptyShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EmptyShow.h"; sourceTree = "<group>"; };
+		2CFAB80B1D24F8AD002563AF /* UIView+EmptyShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EmptyShow.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,8 @@
 		2C00AA0F1D23A034003076E1 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				2CFAB80A1D24F8AD002563AF /* UIView+EmptyShow.h */,
+				2CFAB80B1D24F8AD002563AF /* UIView+EmptyShow.m */,
 				2C00AA101D23A034003076E1 /* NSString+tool.h */,
 				2C00AA111D23A034003076E1 /* NSString+tool.m */,
 				2C00AA121D23A034003076E1 /* UIImage+tool.h */,
@@ -182,6 +187,7 @@
 				2C9381B81D1A94E6009F41C2 /* ViewController.m in Sources */,
 				2C9381B51D1A94E6009F41C2 /* AppDelegate.m in Sources */,
 				2C00AA171D23A034003076E1 /* UIImage+tool.m in Sources */,
+				2CFAB80C1D24F8AD002563AF /* UIView+EmptyShow.m in Sources */,
 				2C9381B21D1A94E6009F41C2 /* main.m in Sources */,
 				2C00AA161D23A034003076E1 /* NSString+tool.m in Sources */,
 			);
