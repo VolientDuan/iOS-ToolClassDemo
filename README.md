@@ -49,7 +49,9 @@
 	- (void)emptyDataCheckWithType:(ViewDataType)emptyType
 	                   andHaveData:(BOOL)haveData
 	                andReloadBlock:(ReloadDataBlock)block;
-	                
+示例图：
+
+![emptyOrder.png](https://github.com/VolientDuan/iOS-ToolClassDemo/blob/master/md+image/emptyOrder.png?raw=true)	                
 ######三、UIImage的扩展类
 
 1.UIImage+tool
