@@ -6,9 +6,25 @@
 
 1.屏幕的宽度和高度
 
+	#define SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
+	#define SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
+
 2.16进制颜色转换
 
+	#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 3.自定义log
+
+	#define DEBUGGER 1 //上线版本屏蔽此宏
+	
+	#ifdef DEBUGGER
+	/* 自定义log 可以输出所在的类名,方法名,位置(行数)*/
+	#define VDLog(format, ...) NSLog((@"%s [Line %d] " format), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+	
+	#else
+	
+	#define VDLog(...)
+	
+	#endif
 
 
 #####目前包含一下工具类：
@@ -23,6 +39,17 @@
 
 2.UIView+EmptyShow
 
+	/**
+	 *  空页面显示提醒图与文字并添加重新刷新
+	 *
+	 *  @param emptyType 页面的展示的数据类别（例如：我的订单或者web页）
+	 *  @param haveData  是否有数据
+	 *  @param block     重新加载页面（不需要时赋空）
+	 */
+	- (void)emptyDataCheckWithType:(ViewDataType)emptyType
+	                   andHaveData:(BOOL)haveData
+	                andReloadBlock:(ReloadDataBlock)block;
+	                
 ######三、UIImage的扩展类
 
 1.UIImage+tool
