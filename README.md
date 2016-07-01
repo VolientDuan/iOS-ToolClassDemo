@@ -55,3 +55,10 @@
 ######三、UIImage的扩展类
 
 1.UIImage+tool
+
+#####四、UIControl的扩展类
+1.UIControl+clickRepeatedly（处理按钮的反复点击）
+
+不用再纠结此类问题了，一句代码搞定：
+
+	btn.clickInterval = 3;
