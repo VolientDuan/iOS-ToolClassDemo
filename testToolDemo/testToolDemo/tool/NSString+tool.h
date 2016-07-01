@@ -154,5 +154,20 @@ typedef enum
  */
 - (NSMutableAttributedString *)changeWithStr:(NSString *)str andColor:(UIColor *)color andFont:(UIFont *)font;
 
+#pragma mark - 给字符串添加中划线
+/**
+ *  添加中划线
+ *
+ *  @return 富文本
+ */
+- (NSMutableAttributedString *)addCenterLine;
+
+#pragma mark - 给字符串添加下划线
+/**
+ *  添加下划线
+ *
+ *  @return 富文本
+ */
+- (NSMutableAttributedString *)addDownLine;
 
 @end

@@ -228,5 +228,16 @@
     }
     return attributedStr;
 }
-
+- (NSMutableAttributedString *)addCenterLine{
+    
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:self attributes:attribtDic];
+    return attributeStr;
+}
+- (NSMutableAttributedString *)addDownLine{
+    
+     NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:self attributes:attribtDic];
+    return attributeStr;
+}
 @end
