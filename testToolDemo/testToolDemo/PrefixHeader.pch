@@ -9,6 +9,7 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 #import <UIKit/UIKit.h>
+#import "UserInfoModel.h"
 
 #if TARGET_IPHONE_SIMULATOR//模拟器
 #define PHONE_MARK  0

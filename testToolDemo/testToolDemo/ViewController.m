@@ -32,6 +32,15 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = NO;
     [self.view addSubview:_tableView];
+    
+    //UserInfoModel(单例)的使用
+    [UserInfoModel sharedManage].token = [NSString getDeviceIdentifierForVendor];
+    [UserInfoModel sharedManage].userName = @"volientDuan";
+    [UserInfoModel sharedManage].isBind = YES;
+    
+    VDLog(@"token:%@;\nuserName:%@",[UserInfoModel sharedManage].token,[UserInfoModel sharedManage].userName);
+    
+    
 //    UIView *bgView = [[UIView alloc]init];
 //    bgView.backgroundColor = [UIColor orangeColor];
 //    [self.view addSubview:bgView];
