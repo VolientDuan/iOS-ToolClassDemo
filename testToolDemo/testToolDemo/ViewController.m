@@ -11,6 +11,7 @@
 #import "NSString+tool.h"
 #import "UIImage+tool.h"
 #import "UIView+EmptyShow.h"
+#define MENU_APPKEY @"e9d5a19b5d072b671ff9072cc31c61a8"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tableView;
@@ -32,14 +33,18 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = NO;
     [self.view addSubview:_tableView];
-    
     //UserInfoModel(单例)的使用
     [UserInfoModel sharedManage].token = [NSString getDeviceIdentifierForVendor];
     [UserInfoModel sharedManage].userName = @"volientDuan";
     [UserInfoModel sharedManage].isBind = YES;
     
     VDLog(@"token:%@;\nuserName:%@",[UserInfoModel sharedManage].token,[UserInfoModel sharedManage].userName);
-    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"红烧肉" forKey:@"menu"];
+    [params setObject:MENU_APPKEY forKey:@"key"];
+    [[RequestTool shareManager]sendRequestWithAPI:@"/cook/query.php" withVC:self withParams:params withClass:nil responseBlock:^(id response, BOOL isError, NSString *errorMessage, NSInteger errorCode) {
+        
+    }];
     
 //    UIView *bgView = [[UIView alloc]init];
 //    bgView.backgroundColor = [UIColor orangeColor];

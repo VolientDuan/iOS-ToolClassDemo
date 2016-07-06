@@ -10,7 +10,7 @@
 #define PrefixHeader_pch
 #import <UIKit/UIKit.h>
 #import "UserInfoModel.h"
-
+#import "RequestTool.h"
 #if TARGET_IPHONE_SIMULATOR//模拟器
 #define PHONE_MARK  0
 #elif TARGET_OS_IPHONE//真机
