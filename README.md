@@ -63,3 +63,8 @@
 	btn.clickInterval = 3;
 #####五、用户信息（单例模式）
 UserInfoModel:实现一些轻量级的用户信息存储
+
+#####六、AFNetWorking的二次封装（单例模式）
+1.简单的HTTP（POST）请求：其中添加了多种请求错误判断和debug模式下打印响应成功的数据，最后采用block进行响应结果的回调
+
+
