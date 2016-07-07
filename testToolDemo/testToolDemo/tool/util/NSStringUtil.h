@@ -16,7 +16,7 @@
  *
  *  @return 返回结果
  */
-+(BOOL)isValidateEmail:(NSString *)email;
++(BOOL) isValidateEmail:(NSString *)email;
 /**
  *  校验手机号格式
  *
@@ -32,5 +32,14 @@
  *
  *  @return 结果
  */
-+(BOOL) isvalidateCarNo:(NSString*)carNo;
++(BOOL) isValidateCarNo:(NSString*)carNo;
+/**
+ *  校验身份证号
+ *
+ *  @param idCardNo 身份证号
+ *
+ *  @return 结果
+ */
++(BOOL) isValidateIDCardNo:(NSString *)idCardNo;
+
 @end
