@@ -18,19 +18,31 @@
     });
     return shareManage;
 }
-//存入
+#pragma mark [存入]
+//存入字符串类型数据
 - (void)saveInfoWithKey:(NSString *)key andValue:(NSString *)value{
-    if (value == nil) {
+    if (![value isNullString]) {
         value = @"";
     }
     [[NSUserDefaults standardUserDefaults]setObject:value forKey:key];
+    //同步存储到磁盘中
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
-//取出
+//存入布朗型数据
+- (void)saveBoolWithKey:(NSString *)key andValue:(BOOL)value{
+    [self saveInfoWithKey:key andValue:value == YES?@"YES":@"NO"];
+}
+#pragma mark [取出]
+//取出字符串类型数据
 - (NSString *)getInfoWithKey:(NSString *)key{
     return [[NSUserDefaults standardUserDefaults]objectForKey:key];
 }
+//取出布朗型数据
+- (BOOL)getBoolWithKey:(NSString *)key{
+return [[self getInfoWithKey:key] isEqualToString:@"YES"];
+}
 
+#pragma mark [相关信息的set与get]
 //token
 - (void)setToken:(NSString *)token{
     [self saveInfoWithKey:@"token" andValue:token];
@@ -49,10 +61,10 @@
 
 //isBind
 - (void)setIsBind:(BOOL)isBind{
-    [self saveInfoWithKey:@"isBind" andValue:isBind == YES?@"YES":@"NO"];
+    [self saveBoolWithKey:@"isBind" andValue:isBind];
 }
 - (BOOL)isBind{
-    return [[self getInfoWithKey:@"isBind"] isEqualToString:@"YES"];
+    return [self getBoolWithKey:@"isBind"];
 }
 
 @end
