@@ -67,9 +67,28 @@ UserInfoModel:实现一些轻量级的用户信息存储
 #####六、AFNetWorking的二次封装（单例模式）
 1.简单的HTTP（POST）请求：其中添加了多种请求错误判断和debug模式下打印响应成功的数据，最后采用block进行响应结果的回调
 
+	/**
+	 *  发送请求
+	 *
+	 *  @param requestAPI 请求的API
+	 *  @param vc         发送请求的视图控制器
+	 *  @param params     请求参数
+	 *  @param className  数据模型
+	 *  @param response   请求的返回结果回调
+	 */
+	- (void)sendRequestWithAPI:(NSString *)requestAPI
+	                    withVC:(UIViewController *)vc
+	                withParams:(NSDictionary *)params
+	                 withClass:(Class)className
+	             responseBlock:(RequestResponse)response;
+
 #####七、校验工具类
 1.手机号校验
 
+	+(BOOL) isValidateMobile:(NSString *)mobile
 2.邮箱校验
 
+	+(BOOL)isValidateEmail:(NSString *)email
 3.车牌号校验
+
+	+(BOOL) isvalidateCarNo:(NSString*)carNo
