@@ -10,6 +10,24 @@
 
 @implementation NSString (tool)
 
+- (BOOL) isNullString{
+    if(self == nil) {
+        return YES;
+    }
+    
+    if((NSNull *)self == [NSNull null]) {
+        return YES;
+    }
+    
+    if(self.length == 0) {
+        return YES;
+    }
+    
+    if([self isEqualToString:@"<null>"]) {
+        return YES;
+    }
+    return NO;
+}
 + (NSString *) getDeviceIdentifierForVendor{
     return  [[UIDevice currentDevice].identifierForVendor UUIDString];
 }

@@ -23,6 +23,12 @@ typedef enum
 }RangeFormatType;
 
 @interface NSString (tool)
+/**
+ *  空判断
+ *
+ *  @return 是否为空
+ */
+- (BOOL) isNullString;
 
 #pragma mark - 常用工具
 /**
