@@ -32,9 +32,17 @@
 
 1.NSString+tool
 
+
+* 获取DeviceIdentifierForVendor
+* 时间戳转化为字符串
+* 富文本转化
+
 ######二、UIView的扩展类
 
 1.UIView+tool
+
+* 获取frame属性和单个属性的设置
+* 设置圆角半径
 
 2.UIView+EmptyShow
 
@@ -53,7 +61,7 @@
 ![emptyOrder.png](https://github.com/VolientDuan/iOS-ToolClassDemo/blob/master/md+image/emptyOrder.png?raw=true)	                
 ######三、UIImage的扩展类
 
-1.UIImage+tool
+1.UIImage+tool：对image的尺寸和大小进行修改以及截图
 
 #####四、UIControl的扩展类
 1.UIControl+clickRepeatedly（处理按钮的反复点击）
