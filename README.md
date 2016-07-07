@@ -92,3 +92,6 @@ UserInfoModel:实现一些轻量级的用户信息存储
 3.车牌号校验
 
 	+(BOOL) isvalidateCarNo:(NSString*)carNo
+4.身份证号验证
+
+	+(BOOL) isValidateIDCardNo:(NSString *)idCardNo
