@@ -32,7 +32,7 @@
 
 1.NSString+tool
 
-
+* 空判断
 * 获取DeviceIdentifierForVendor
 * 时间戳转化为字符串
 * 富文本转化
