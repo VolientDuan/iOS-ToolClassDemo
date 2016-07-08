@@ -90,6 +90,23 @@ UserInfoModel:实现一些轻量级的用户信息存储
 	                 withClass:(Class)className
 	             responseBlock:(RequestResponse)response;
 
+2.创建下载任务，支持下载进度，任务对象和路径的返回（支持多任务下载）
+
+	/**
+	 *  创建下载任务
+	 *
+	 *  @param url          下载地址
+	 *  @param fileName     文件名
+	 *  @param downloadTask 任务
+	 *  @param progress     进度
+	 *  @param result       结果
+	 */
+	- (void)createDdownloadTaskWithURL:(NSString *)url
+	              withFileName:(NSString *)fileName
+	                       Task:(DownloadTask)downloadTask
+	                   Progress:(TaskProgress)progress
+	                     Result:(TaskResult)result;
+
 #####七、校验工具类
 1.手机号校验
 
