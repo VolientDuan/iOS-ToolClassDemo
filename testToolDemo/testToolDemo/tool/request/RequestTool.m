@@ -71,7 +71,7 @@
                           Progress:(TaskProgress)progress
                             Result:(TaskResult)result{
     /**
-     *  常见下载队列，其中"download"为线程标示符
+     *  创建下载队列，其中"download"为线程标示符
      */
     task_queue("download", ^{
         NSURL *requestUrl = [NSURL URLWithString:url];
@@ -79,7 +79,7 @@
         NSURLSessionDownloadTask *task = [[RequestManage shareTaskManage] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
             //回到主线程
             main_view_queue(^{
-                progress(downloadProgress.fractionCompleted);
+                progress(downloadProgress.fractionCompleted,task.taskDescription);
             });
             
         } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
@@ -105,14 +105,47 @@
             if (error) {
                 isError = YES;
             }
-            result(response,filePath,isError);
+            result(response,isError);
             
         }];
         [task resume];
+        /* 这个描述可以当做一个任务的标识，一般需要控制任务是才会使用 */
         task.taskDescription = fileName;
         downloadTask(task);
     });
     
+}
+
+- (void)createUploadTaskWithUrl:(NSString *)url
+                       WithMark:(NSString *)mark
+                       withData:(NSData *)data
+                           Task:(UploadTask)uploadTask
+                       Progress:(TaskProgress)progress
+                         Result:(TaskResult)result{
+    //创建上传队列
+    task_queue("upload", ^{
+        
+        NSURL *requestUrl = [NSURL URLWithString:url];
+        NSURLRequest *request = [NSURLRequest requestWithURL:requestUrl];
+        NSData *data;
+        NSURLSessionUploadTask *task = [[RequestManage shareTaskManage]uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
+            //回到主线程
+            main_view_queue(^{
+                progress(uploadProgress.fractionCompleted,task.taskDescription);
+            });
+            
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            BOOL isError = NO;
+            if (error) {
+                isError = YES;
+            }
+            result(response,isError);
+        }];
+        [task resume];
+        /* 这个描述可以当做一个任务的标识，一般需要控制任务是才会使用 */
+        task.taskDescription = mark;
+        
+    });
 }
 
 /**

@@ -11,10 +11,16 @@
 /*普通请求回调*/
 typedef void (^RequestResponse)(id response, BOOL isError , NSString *errorMessage,NSInteger errorCode);
 
+/*任务进度回调*/
+typedef void (^TaskProgress)(float progress,NSString *taskDesc);
+
 /*下载任务回调*/
-typedef void (^TaskProgress)(float progress);
 typedef void (^DownloadTask)(NSURLSessionDownloadTask *task);
-typedef void (^TaskResult)(id response,NSURL *filePath,BOOL isError);
+
+/*上传任务回调*/
+typedef void (^UploadTask)(NSURLSessionUploadTask *task);
+
+typedef void (^TaskResult)(id response,BOOL isError);
 
 @interface RequestTool : NSObject
 
@@ -55,4 +61,20 @@ typedef void (^TaskResult)(id response,NSURL *filePath,BOOL isError);
                    Progress:(TaskProgress)progress
                      Result:(TaskResult)result;
 
+/**
+ *  创建上传任务
+ *
+ *  @param url        上传地址
+ *  @param mark       任务标识
+ *  @param data       序列化文件
+ *  @param uploadTask 任务
+ *  @param progress   进度
+ *  @param result     结果
+ */
+- (void)createUploadTaskWithUrl:(NSString *)url
+                       WithMark:(NSString *)mark
+                       withData:(NSData *)data
+                           Task:(UploadTask)uploadTask
+                       Progress:(TaskProgress)progress
+                         Result:(TaskResult)result;
 @end
