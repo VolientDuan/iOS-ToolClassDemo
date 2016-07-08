@@ -22,13 +22,9 @@ static NSString *baseUrl = @"http://apis.juhe.cn";
 }
 
 + (AFURLSessionManager *)shareTaskManage{
-    static AFURLSessionManager *manager = nil;
-    static dispatch_once_t onceTask;
-    dispatch_once(&onceTask, ^{
-        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:config];
-    });
-    return manager;
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    return [[AFURLSessionManager alloc]initWithSessionConfiguration:config];
 }
 
 @end

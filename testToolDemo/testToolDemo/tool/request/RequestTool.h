@@ -55,7 +55,7 @@ typedef void (^TaskResult)(id response,BOOL isError);
  *  @param progress     进度
  *  @param result       结果
  */
-- (void)createDdownloadTaskWithURL:(NSString *)url
+- (void)createDownloadTaskWithURL:(NSString *)url
               withFileName:(NSString *)fileName
                        Task:(DownloadTask)downloadTask
                    Progress:(TaskProgress)progress

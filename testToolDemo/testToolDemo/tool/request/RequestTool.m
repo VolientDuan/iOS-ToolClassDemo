@@ -65,7 +65,7 @@
     
 }
 
-- (void)createDdownloadTaskWithURL:(NSString *)url
+- (void)createDownloadTaskWithURL:(NSString *)url
                       withFileName:(NSString *)fileName
                               Task:(DownloadTask)downloadTask
                           Progress:(TaskProgress)progress
@@ -79,7 +79,7 @@
         NSURLSessionDownloadTask *task = [[RequestManage shareTaskManage] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
             //回到主线程
             main_view_queue(^{
-                progress(downloadProgress.fractionCompleted,task.taskDescription);
+                progress(downloadProgress.fractionCompleted,fileName);
             });
             
         } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
@@ -104,6 +104,10 @@
             BOOL isError = NO;
             if (error) {
                 isError = YES;
+                NSLog(@"error:%@",[error my_description]);
+            }
+            else{
+                NSLog(@"%@下载完成",fileName);
             }
             result(response,isError);
             
@@ -132,6 +136,7 @@
             //回到主线程
             main_view_queue(^{
                 progress(uploadProgress.fractionCompleted,task.taskDescription);
+                
             });
             
         } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
