@@ -90,7 +90,7 @@ UserInfoModel:实现一些轻量级的用户信息存储
 	                 withClass:(Class)className
 	             responseBlock:(RequestResponse)response;
 
-2.创建下载任务，支持下载进度，任务对象和路径的返回（支持多任务下载）
+2.创建下载任务并对下载进度，任务对象和存储路径等进行回调（支持多任务下载），创建的任务会自动加到下载队列中，下载进度的回调自动回到主线程（便于相关UI的操作）
 
 	/**
 	 *  创建下载任务
