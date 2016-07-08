@@ -18,7 +18,9 @@
     });
     return shareManage;
 }
+
 #pragma mark [存入]
+
 //存入字符串类型数据
 - (void)saveInfoWithKey:(NSString *)key andValue:(NSString *)value{
     if (![value isNullString]) {
@@ -28,21 +30,39 @@
     //同步存储到磁盘中
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
+
 //存入布朗型数据
 - (void)saveBoolWithKey:(NSString *)key andValue:(BOOL)value{
     [self saveInfoWithKey:key andValue:value == YES?@"YES":@"NO"];
 }
+
+//存入对象
+- (void)saveObjWithKey:(NSString *)key andValue:(NSObject *)value{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[value copy]];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark [取出]
+
 //取出字符串类型数据
 - (NSString *)getInfoWithKey:(NSString *)key{
     return [[NSUserDefaults standardUserDefaults]objectForKey:key];
 }
+
 //取出布朗型数据
 - (BOOL)getBoolWithKey:(NSString *)key{
 return [[self getInfoWithKey:key] isEqualToString:@"YES"];
 }
 
+//取出对象
+- (id)getObjWithKey:(NSString *)key{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 #pragma mark [相关信息的set与get]
+
 //token
 - (void)setToken:(NSString *)token{
     [self saveInfoWithKey:@"token" andValue:token];
@@ -65,6 +85,14 @@ return [[self getInfoWithKey:key] isEqualToString:@"YES"];
 }
 - (BOOL)isBind{
     return [self getBoolWithKey:@"isBind"];
+}
+
+//订单
+- (void)setOrderList:(NSArray *)orderList{
+    [self saveObjWithKey:@"orderList" andValue:orderList];
+}
+- (NSArray *)orderList{
+    return (NSArray *)[self getObjWithKey:@"orderList"];
 }
 
 @end

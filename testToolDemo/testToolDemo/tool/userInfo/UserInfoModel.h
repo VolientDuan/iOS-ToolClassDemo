@@ -13,10 +13,12 @@
 //实现单例
 + (instancetype)sharedManage;
 
-@property (nonatomic, strong) NSString     *token;//用户唯一标识
+@property (nonatomic, strong) NSString       *token;//用户唯一标识
 
-@property (nonatomic, strong) NSString     *userName;//用户名
+@property (nonatomic, strong) NSString       *userName;//用户名
 
-@property (nonatomic, assign) BOOL         isBind;//是否绑定
+@property (nonatomic, assign) BOOL           isBind;//是否绑定
+
+@property (nonatomic, strong) NSMutableArray *orderList;//订单列表
 
 @end

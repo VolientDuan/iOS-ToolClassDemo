@@ -70,44 +70,87 @@
                               Task:(DownloadTask)downloadTask
                           Progress:(TaskProgress)progress
                             Result:(TaskResult)result{
-    NSURL *requestUrl = [NSURL URLWithString:url];
-    NSURLRequest *request = [NSURLRequest requestWithURL:requestUrl];
-    NSURLSessionDownloadTask *task = [[RequestManage shareTaskManage] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-        progress(downloadProgress.fractionCompleted);
-        
-    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        /**
-         *  拼接返回路径，并返回给 destination block 块
-         *
-         *  @param NSCachesDirectory 沙盒中 Caches 的路径
-         *  @param NSUserDomainMask  搜索文件的范围
-         *  @param YES               是否返回绝对路径 YES 是返回绝对路径 NO 返回相对路径
-         *
-         *  @return 沙盒中 Caches 的绝对路径
-         */
-        NSString *cachaPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
-        NSString *path = [cachaPath stringByAppendingPathComponent:fileName];
-        
-        NSURL *fileUrl = [NSURL fileURLWithPath:path];
-        
-        /*设置文件的存储路径(路径你想怎么设我管不着)*/
-        return fileUrl;
-        
-    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        BOOL isError = NO;
-        if (error) {
-            isError = YES;
-        }
-        result(response,filePath,isError);
-        
-    }];
-    [task resume];
-    task.taskDescription = fileName;
-    downloadTask(task);
+    /**
+     *  常见下载队列，其中"download"为线程标示符
+     */
+    task_queue("download", ^{
+        NSURL *requestUrl = [NSURL URLWithString:url];
+        NSURLRequest *request = [NSURLRequest requestWithURL:requestUrl];
+        NSURLSessionDownloadTask *task = [[RequestManage shareTaskManage] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+            //回到主线程
+            main_view_queue(^{
+                progress(downloadProgress.fractionCompleted);
+            });
+            
+        } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+            /**
+             *  拼接返回路径，并返回给 destination block 块
+             *
+             *  @param NSCachesDirectory 沙盒中 Caches 的路径
+             *  @param NSUserDomainMask  搜索文件的范围
+             *  @param YES               是否返回绝对路径 YES 是返回绝对路径 NO 返回相对路径
+             *
+             *  @return 沙盒中 Caches 的绝对路径
+             */
+            NSString *cachaPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+            NSString *path = [cachaPath stringByAppendingPathComponent:fileName];
+            
+            NSURL *fileUrl = [NSURL fileURLWithPath:path];
+            
+            /*设置文件的存储路径(路径你想怎么设我管不着)*/
+            return fileUrl;
+            
+        } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+            BOOL isError = NO;
+            if (error) {
+                isError = YES;
+            }
+            result(response,filePath,isError);
+            
+        }];
+        [task resume];
+        task.taskDescription = fileName;
+        downloadTask(task);
+    });
+    
 }
 
+/**
+ *  任务队列
+ *
+ *  @param ^block 在此代码块中创建任务
+ */
+static void task_queue(char *taskName,void (^block)(void))
+{
+    /**
+     *  为下载任务开辟线程
+     *
+     *  @param "download"              线程标示符
+     *  @param DISPATCH_QUEUE_CONCURRENT 并行队列宏
+     *
+     */
+    dispatch_queue_t queue = dispatch_queue_create(taskName, DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        block();
+        
+    });
+}
 
+/**
+ *  回到主线程
+ *
+ *  @param ^block 需要在主线程执行的代码块
+ */
+static void main_view_queue(void (^block)(void))
+{
+    /**
+     *  涉及到跟 UI 界面元素相关的操作，需要回到主线程执行相关代码
+     */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block();
+    });
+
+}
 
 
 
