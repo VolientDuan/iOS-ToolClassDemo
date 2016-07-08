@@ -23,9 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     VDLog(@"很好用的");
     
     self.title = @"傻傻的你";
+    
     _dataArray = [NSMutableArray array];
     
     _tableView = [[UITableView alloc]initWithFrame:self.view.frame];
@@ -33,18 +35,28 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = NO;
     [self.view addSubview:_tableView];
+    
     //UserInfoModel(单例)的使用
     [UserInfoModel sharedManage].token = [NSString getDeviceIdentifierForVendor];
     [UserInfoModel sharedManage].userName = @"volientDuan";
     [UserInfoModel sharedManage].isBind = YES;
     
     VDLog(@"token:%@;\nuserName:%@",[UserInfoModel sharedManage].token,[UserInfoModel sharedManage].userName);
+    
+    //监听用户信息中token的变化（可能有些小伙伴会用到这种监听用户某个信息的变化的变态需求）
+    [[UserInfoModel sharedManage] addObserver:self forKeyPath:@"token" options:NSKeyValueObservingOptionNew context:nil];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeToken) userInfo:nil repeats:YES];
+    
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"红烧肉" forKey:@"menu"];
     [params setObject:MENU_APPKEY forKey:@"key"];
     [[RequestTool shareManager]sendRequestWithAPI:@"/cook/query.php" withVC:self withParams:params withClass:nil responseBlock:^(id response, BOOL isError, NSString *errorMessage, NSInteger errorCode) {
         
     }];
+    
+    
+////调试自己写的工具类真的很累哦
     
 //    UIView *bgView = [[UIView alloc]init];
 //    bgView.backgroundColor = [UIColor orangeColor];
@@ -104,6 +116,15 @@
 //    [webView loadData:data MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    NSLog(@"%@",object);
+}
+static NSInteger tokenIndex;
+- (void)changeToken{
+    tokenIndex ++;
+    [UserInfoModel sharedManage].token = [NSString stringWithFormat:@"%ld",tokenIndex+100000];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,7 +10,17 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface RequestManage : NSObject
-
-+ (AFHTTPSessionManager *)shareSessionManage;
+/**
+ *  普通HTTP请求
+ *
+ *  @return manage
+ */
++ (AFHTTPSessionManager *)shareHTTPManage;
+/**
+ *  下载或上传任务
+ *
+ *  @return manage
+ */
++ (AFURLSessionManager *)shareTaskManage;
 
 @end

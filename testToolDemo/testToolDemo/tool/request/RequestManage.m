@@ -12,11 +12,21 @@ static NSString *baseUrl = @"http://apis.juhe.cn";
 
 @implementation RequestManage
 
-+ (AFHTTPSessionManager *)shareSessionManage{
++ (AFHTTPSessionManager *)shareHTTPManage{
     static AFHTTPSessionManager *manager = nil;
     static dispatch_once_t onceSession;
     dispatch_once(&onceSession, ^{
         manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    });
+    return manager;
+}
+
++ (AFURLSessionManager *)shareTaskManage{
+    static AFURLSessionManager *manager = nil;
+    static dispatch_once_t onceTask;
+    dispatch_once(&onceTask, ^{
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:config];
     });
     return manager;
 }
