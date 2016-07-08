@@ -48,12 +48,12 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeToken) userInfo:nil repeats:YES];
     
     
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:@"红烧肉" forKey:@"menu"];
-//    [params setObject:MENU_APPKEY forKey:@"key"];
-//    [[RequestTool shareManager]sendRequestWithAPI:@"/cook/query.php" withVC:self withParams:params withClass:nil responseBlock:^(id response, BOOL isError, NSString *errorMessage, NSInteger errorCode) {
-//        
-//    }];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"红烧肉" forKey:@"menu"];
+    [params setObject:MENU_APPKEY forKey:@"key"];
+    [[RequestTool shareManager]sendRequestWithAPI:@"/cook/query.php" withVC:self withParams:params withClass:nil responseBlock:^(id response, BOOL isError, NSString *errorMessage, NSInteger errorCode) {
+        
+    }];
     
     
 ////调试自己写的工具类真的很累哦
