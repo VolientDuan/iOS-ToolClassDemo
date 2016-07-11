@@ -37,6 +37,12 @@ typedef enum
  *  @return deviceId
  */
 + (NSString *) getDeviceIdentifierForVendor;
+/**
+ *  获取当前版本号
+ *
+ *  @return 版本号
+ */
++ (NSString *) getAppVersions;
 
 
 /**

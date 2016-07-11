@@ -32,6 +32,13 @@
     return  [[UIDevice currentDevice].identifierForVendor UUIDString];
 }
 
++ (NSString *)getAppVersions{
+    //这里的string是versions键的值，肯定是空的，没有设置过，判断是否是首次使用
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    return app_Version;
+}
 
 + (NSString*) format:(NSTimeInterval) time;
 {
