@@ -27,7 +27,9 @@ typedef void (^TaskResult)(id response,BOOL isError);
 @property (nonatomic, strong,readonly)NSString *baseUrl;
 
 /*任务列表*/
-@property (nonatomic, strong)NSMutableArray *taskList;
+@property (nonatomic, strong)NSArray *taskList;
+/* 已完成列表 */
+@property (nonatomic, strong)NSArray *finishTasks;
 
 + (instancetype)shareManager;
 

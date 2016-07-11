@@ -65,6 +65,35 @@
     
 }
 
+#pragma mark [下载和上传]
+- (NSArray *)finishTasks{
+    
+    NSArray *array = (NSArray *)[[UserInfoModel sharedManage]getObjWithKey:@"finishTasks"];
+    if (array) {
+        return array;
+    }
+    return [NSArray array];
+}
+
+- (void)setFinishTasks:(NSArray *)finishTasks{
+    
+    [[UserInfoModel sharedManage]saveObjWithKey:@"finishTasks" andValue:finishTasks];
+}
+
+- (NSArray *)taskList{
+    
+    NSArray *array = (NSArray *)[[UserInfoModel sharedManage]getObjWithKey:@"taskList"];
+    if (array) {
+        return array;
+    }
+    return [NSArray array];
+}
+- (void)setTaskList:(NSArray *)taskList{
+    
+    [[UserInfoModel sharedManage]saveObjWithKey:@"taskList" andValue:taskList];
+}
+
+
 - (void)createDownloadTaskWithURL:(NSString *)url
                       withFileName:(NSString *)fileName
                               Task:(DownloadTask)downloadTask
@@ -108,6 +137,7 @@
             }
             else{
                 NSLog(@"%@下载完成",fileName);
+                
             }
             result(response,isError);
             
@@ -131,7 +161,6 @@
         
         NSURL *requestUrl = [NSURL URLWithString:url];
         NSURLRequest *request = [NSURLRequest requestWithURL:requestUrl];
-        NSData *data;
         NSURLSessionUploadTask *task = [[RequestManage shareTaskManage]uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
             //回到主线程
             main_view_queue(^{
