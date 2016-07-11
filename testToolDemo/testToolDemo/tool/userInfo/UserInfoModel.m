@@ -23,7 +23,7 @@
 
 //存入字符串类型数据
 - (void)saveInfoWithKey:(NSString *)key andValue:(NSString *)value{
-    if (![value isNullString]) {
+    if ([value isNullString]) {
         value = @"";
     }
     [[NSUserDefaults standardUserDefaults]setObject:value forKey:key];
