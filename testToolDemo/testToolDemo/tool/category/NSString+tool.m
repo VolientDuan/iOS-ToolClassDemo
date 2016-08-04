@@ -248,7 +248,7 @@
             length = range.location;
         }
         else{
-            NSLog(@"error");
+            length = str.length - 1;
         }
     }
     return attributedStr;
