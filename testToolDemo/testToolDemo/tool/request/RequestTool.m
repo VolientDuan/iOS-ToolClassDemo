@@ -9,6 +9,9 @@
 #import "RequestTool.h"
 #import "RequestManage.h"
 #import "NSObject+Unicode.h"
+
+#import <objc/runtime.h>
+
 @implementation RequestTool
 
 - (NSString *)baseUrl{
@@ -26,7 +29,7 @@
 - (void)sendRequestWithAPI:(NSString *)requestAPI
                     withVC:(UIViewController *)vc
                 withParams:(NSDictionary *)params
-                 withClass:(Class)className
+                 withClass:(NSString *)className
              responseBlock:(RequestResponse)response{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //修改为GBK编码
@@ -43,7 +46,13 @@
         //响应
         VDLog(@"\nResponse=====>URL:%@%@\nresult:%@",baseUrl,requestAPI,[responseObject my_description]);
         //对responseObject进行处理...(想咋写就咋写)
-        
+        if (className) {
+            /* 关于如何使用这个class可以查看本工程下的'runtime常用方法.md' */
+            Class classVC = NSClassFromString(className);
+        }
+        else{
+            response(responseObject,[[responseObject valueForKey:@"code"] isEqualToString:@"0"] ? NO:YES,[responseObject valueForKey:@"message"],[[responseObject valueForKey:@"code"] integerValue]);
+        }
         
         
         

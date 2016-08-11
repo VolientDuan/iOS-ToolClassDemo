@@ -39,13 +39,13 @@ typedef void (^TaskResult)(id response,BOOL isError);
  *  @param requestAPI 请求的API
  *  @param vc         发送请求的视图控制器
  *  @param params     请求参数
- *  @param className  数据模型
+ *  @param className  数据模型的类名(参数为空时:response为字典;参数不为空response为Model)
  *  @param response   请求的返回结果回调
  */
 - (void)sendRequestWithAPI:(NSString *)requestAPI
                     withVC:(UIViewController *)vc
                 withParams:(NSDictionary *)params
-                 withClass:(Class)className
+                 withClass:(NSString *)className
              responseBlock:(RequestResponse)response;
 
 /**
