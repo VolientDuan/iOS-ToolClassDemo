@@ -17,6 +17,8 @@ static NSString *baseUrl = @"http://apis.juhe.cn";
     static dispatch_once_t onceSession;
     dispatch_once(&onceSession, ^{
         manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:baseUrl]];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
     });
     return manager;
 }
