@@ -14,6 +14,7 @@
 		2C0FEEEF1D29F42200A7E54D /* UIView+EmptyShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEE81D29F42200A7E54D /* UIView+EmptyShow.m */; };
 		2C0FEEF01D29F42200A7E54D /* UIView+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEEA1D29F42200A7E54D /* UIView+tool.m */; };
 		2C0FEEF31D29F44900A7E54D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEF21D29F44900A7E54D /* UserInfoModel.m */; };
+		2C2CE8181D6076020040F684 /* toast in Resources */ = {isa = PBXBuildFile; fileRef = 2C2CE8171D6076020040F684 /* toast */; };
 		2C6A93021D2C9A7100A204FF /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93011D2C9A7100A204FF /* RequestTool.m */; };
 		2C6A93051D2CCDB300A204FF /* NSObject+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93041D2CCDB300A204FF /* NSObject+Unicode.m */; };
 		2C886E661D2A49D9005A6D36 /* RequestManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C886E651D2A49D9005A6D36 /* RequestManage.m */; };
@@ -44,6 +45,7 @@
 		2C0FEEEA1D29F42200A7E54D /* UIView+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tool.m"; sourceTree = "<group>"; };
 		2C0FEEF11D29F44900A7E54D /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		2C0FEEF21D29F44900A7E54D /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		2C2CE8171D6076020040F684 /* toast */ = {isa = PBXFileReference; lastKnownFileType = folder; path = toast; sourceTree = "<group>"; };
 		2C6A93001D2C9A7100A204FF /* RequestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
 		2C6A93011D2C9A7100A204FF /* RequestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTool.m; sourceTree = "<group>"; };
 		2C6A93031D2CCDB300A204FF /* NSObject+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Unicode.h"; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		2C0FEEDF1D29F42200A7E54D /* tool */ = {
 			isa = PBXGroup;
 			children = (
-				2C755EC11D334BB900545851 /* toast */,
+				2C2CE8171D6076020040F684 /* toast */,
 				2CE1242F1D2E1ED400EEB134 /* util */,
 				2C0FEEF41D2A02E600A7E54D /* request */,
 				2C0FEEE01D29F42200A7E54D /* category */,
@@ -128,13 +130,6 @@
 				2C6A93011D2C9A7100A204FF /* RequestTool.m */,
 			);
 			path = request;
-			sourceTree = "<group>";
-		};
-		2C755EC11D334BB900545851 /* toast */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = toast;
 			sourceTree = "<group>";
 		};
 		2C9381A41D1A94E6009F41C2 = {
@@ -277,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2CE8181D6076020040F684 /* toast in Resources */,
 				2C9381C01D1A94E6009F41C2 /* LaunchScreen.storyboard in Resources */,
 				2C03A2A01D1BA92D00DC5404 /* name.gif in Resources */,
 				2CFAB8111D24FFAA002563AF /* noOrder.png in Resources */,
