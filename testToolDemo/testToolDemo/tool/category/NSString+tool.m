@@ -40,6 +40,17 @@
     return app_Version;
 }
 
++ (NSString *)getWeekDay:(NSTimeInterval)time {
+    //创建一个星期数组
+    NSArray *weekday = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    //将时间戳转换成日期
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:newDate];
+    NSString *weekStr = [weekday objectAtIndex:components.weekday];
+    return weekStr;
+}
+
 + (NSString*) format:(NSTimeInterval) time;
 {
     if (time < 0)

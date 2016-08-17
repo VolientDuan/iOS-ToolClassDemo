@@ -44,7 +44,14 @@ typedef enum
  */
 + (NSString *) getAppVersions;
 
-
+/**
+ *  转换为周X
+ *
+ *  @param time 时间戳
+ *
+ *  @return 周几
+ */
++ (NSString *) getWeekDay:(NSTimeInterval) time;
 /**
  *  转换为XXXX年XX月XX日
  *
