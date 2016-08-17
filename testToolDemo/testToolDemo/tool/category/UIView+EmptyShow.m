@@ -28,6 +28,9 @@ static char WarningViewKey;
 }
 
 - (void)emptyDataCheckWithType:(ViewDataType)dataType andHaveData:(BOOL)haveData andReloadBlock:(ReloadDataBlock)block{
+    if (self.warningView) {
+        [self.warningView removeFromSuperview];
+    }
     if (!haveData) {
         self.warningView = [CustomerWarnView initWithFrame:self.bounds andType:dataType];
         if (!block) {
