@@ -52,8 +52,8 @@
     animation.duration = 0.1;
     NSMutableArray *values = [NSMutableArray array];
     [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
-//    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
-//    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
+    //    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
+    //    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
     [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
     animation.values = values;
     [self.layer addAnimation:animation forKey:nil];
@@ -104,13 +104,17 @@
 }
 
 - (void)okClick{
-    self.callBack();
+    if (self.callBack) {
+        self.callBack();
+    }
     [self closeAlert];
     
 }
 
 - (void)cancelClick{
-    self.cancelCallBack();
+    if (self.cancelCallBack) {
+        self.cancelCallBack();
+    }
     [self closeAlert];
 }
 
