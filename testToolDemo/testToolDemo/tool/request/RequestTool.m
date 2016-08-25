@@ -48,7 +48,9 @@
         //对responseObject进行处理...(想咋写就咋写)
         if (className) {
             /* 关于如何使用这个class可以查看本工程下的'runtime常用方法.md' */
-            Class classVC = NSClassFromString(className);
+            Class class = NSClassFromString(className);
+            NSObject *responseModel = [[class alloc]init];
+            response(responseModel,[[responseObject valueForKey:@"code"] isEqualToString:@"0"] ? NO:YES,[responseObject valueForKey:@"message"],[[responseObject valueForKey:@"code"] integerValue]);
         }
         else{
             response(responseObject,[[responseObject valueForKey:@"code"] isEqualToString:@"0"] ? NO:YES,[responseObject valueForKey:@"message"],[[responseObject valueForKey:@"code"] integerValue]);

@@ -63,14 +63,14 @@
     //从下到上
     //按钮
     UIButton *okButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    okButton.frame = CGRectMake(0, GetFloatContrastHightWithPX(75), self.v_w/2, GetFloatContrastHightWithPX(111.0-75.0));
+    okButton.frame = CGRectMake(0, GetFloatContrastHightWithPX(75), self.v_w/2, ALERT_MSG_HIGHT-GetFloatContrastHightWithPX(75.0));
     okButton.titleLabel.font = [UIFont systemFontOfSize:GetFloatContrastHightWithPX(12.0)];
     [okButton setTitleColor:UIColorFromRGB(THEME_COLOR) forState:UIControlStateNormal];
     [okButton setTitle:@"确认" forState:UIControlStateNormal];
     [okButton addTarget:self action:@selector(okClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:okButton];
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    cancelButton.frame = CGRectMake(self.v_w/2, GetFloatContrastHightWithPX(75), self.v_w/2, GetFloatContrastHightWithPX(111.0-75.0));
+    cancelButton.frame = CGRectMake(self.v_w/2, GetFloatContrastHightWithPX(75), self.v_w/2, ALERT_MSG_HIGHT-GetFloatContrastHightWithPX(75.0));
     cancelButton.titleLabel.font = [UIFont systemFontOfSize:GetFloatContrastHightWithPX(12.0)];
     [cancelButton setTitleColor:UIColorFromRGB(MAIN_BLACK_COLOR) forState:UIControlStateNormal];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -78,7 +78,7 @@
     [self addSubview:cancelButton];
     
     //划线
-    UIView *shuXian = [[UIView alloc]initWithFrame:CGRectMake(0, GetFloatContrastHightWithPX(75), 1.0, GetFloatContrastHightWithPX(111.0-75.0))];
+    UIView *shuXian = [[UIView alloc]initWithFrame:CGRectMake(0, GetFloatContrastHightWithPX(75), 1.0, ALERT_MSG_HIGHT-GetFloatContrastHightWithPX(75.0))];
     shuXian.v_centerX = self.v_w/2;
     shuXian.backgroundColor = UIColorFromRGB(TABLEVIEW_LINE_COLOR);
     [self addSubview:shuXian];
@@ -90,8 +90,8 @@
     //标签
     _msgLabel = [[UILabel alloc]init];
     _msgLabel.font = [UIFont systemFontOfSize:GetFloatContrastHightWithPX(12.0)];
-    CGRect rect = [msg boundingRectWithSize:CGSizeMake(GetFloatContrastHightWithPX(200-40.0), GetFloatContrastHightWithPX(50)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_msgLabel.font} context:nil];
-    _msgLabel.frame = CGRectMake(GetFloatContrastHightWithPX(20.0), GetFloatContrastHightWithPX(32.0)+GetFloatContrastHightWithPX(6.0)-rect.size.height/2, GetFloatContrastHightWithPX(200-40.0), rect.size.height);
+    CGRect rect = [msg boundingRectWithSize:CGSizeMake(ALERT_MSG_WIDTH-GetFloatContrastHightWithPX(40.0), GetFloatContrastHightWithPX(50)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_msgLabel.font} context:nil];
+    _msgLabel.frame = CGRectMake(GetFloatContrastHightWithPX(20.0), GetFloatContrastHightWithPX(32.0)+GetFloatContrastHightWithPX(6.0)-rect.size.height/2, ALERT_MSG_WIDTH-GetFloatContrastHightWithPX(40.0), rect.size.height);
     _msgLabel.numberOfLines = 0;
     _msgLabel.textColor = UIColorFromRGB(MAIN_BLACK_COLOR);
     _msgLabel.textAlignment = NSTextAlignmentCenter;

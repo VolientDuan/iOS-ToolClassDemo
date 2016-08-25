@@ -94,4 +94,8 @@
     [UIImagePNGRepresentation(self) writeToFile:imagePath atomically:YES];
     return imagePath;
 }
+- (NSString *)saveImageToDocument:(NSString *)filePath{
+    NSString *url;
+    return url;
+}
 @end
