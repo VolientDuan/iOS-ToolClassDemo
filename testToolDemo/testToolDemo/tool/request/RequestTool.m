@@ -11,6 +11,7 @@
 #import "NSObject+Unicode.h"
 
 #import <objc/runtime.h>
+#import "UIImage+tool.h"
 
 @implementation RequestTool
 
@@ -192,7 +193,28 @@
         
     });
 }
-
+- (void)uploadImageWithUrl:(NSString *)url WithImage:(UIImage *)image Params:(NSDictionary *)params Task:(UploadTask)uploadTask Progress:(TaskProgress)progress Result:(TaskResult)result{
+    NSString *formatAPI = [NSString stringWithFormat:@"app/%@.htm?imgType=%ld",url,[[params objectForKey:@"imgType"] integerValue]];
+    VDLog(@"\nRequest=====>URL:%@%@",[RequestManage shareHTTPManage].baseURL.absoluteString,formatAPI);
+    NSData *data = [UIImage smallTheImageBackData:image];
+    task_queue("uploadImage", ^{
+        __block NSURLSessionDataTask * task = [[RequestManage shareHTTPManage]POST:formatAPI parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            [formData appendPartWithFileData:data name:@"file" fileName:@"file.png" mimeType:@"image/png"];
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            //回到主线程
+            main_view_queue(^{
+                progress(uploadProgress.fractionCompleted,task.taskDescription);
+                
+            });
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
+            result(responseObject,code==0?NO:YES);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            result(error,YES);
+        }];
+    });
+    
+}
 /**
  *  任务队列
  *

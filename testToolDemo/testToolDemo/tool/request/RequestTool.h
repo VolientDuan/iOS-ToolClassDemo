@@ -79,4 +79,20 @@ typedef void (^TaskResult)(id response,BOOL isError);
                            Task:(UploadTask)uploadTask
                        Progress:(TaskProgress)progress
                          Result:(TaskResult)result;
+
+/**
+ *  图片的表单上传
+ *
+ *  @param url        url
+ *  @param image      图片
+ *  @param uploadTask 任务
+ *  @param progress   进度
+ *  @param result     结果
+ */
+- (void)uploadImageWithUrl:(NSString *)url
+                 WithImage:(UIImage *)image
+                    Params:(NSDictionary *)params
+                      Task:(UploadTask)uploadTask
+                  Progress:(TaskProgress)progress
+                    Result:(TaskResult)result;
 @end
