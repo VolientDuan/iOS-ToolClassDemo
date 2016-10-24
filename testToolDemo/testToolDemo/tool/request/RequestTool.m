@@ -14,7 +14,41 @@
 #import "UIImage+tool.h"
 
 @implementation RequestTool
-
++ (void)monitoringNetworkState:(void (^)(NSInteger))block{
+    
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager startMonitoring];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+            {
+                //未知网络
+                VDLog(@"[网络状态切换]--未知网络");
+            }
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+            {
+                //无法联网
+                VDLog(@"[网络状态切换]--无法联网");
+            }
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            {
+                //手机自带网络
+                VDLog(@"[网络状态切换]--当前使用的是2g/3g/4g网络");
+            }
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+            {
+                //WIFI
+                VDLog(@"[网络状态切换]--当前在WIFI网络下");
+            }
+                
+        }
+        block(status);
+    }];
+}
 - (NSString *)baseUrl{
     return [RequestManage shareHTTPManage].baseURL.absoluteString;
 }

@@ -31,6 +31,12 @@ typedef void (^TaskResult)(id response,BOOL isError);
 /* 已完成列表 */
 @property (nonatomic, strong)NSArray *finishTasks;
 
+/**
+ *  网络状态检测
+ *  -1:位置网络 0:网络不可用 1:2g-4g 2:wifi
+ */
++ (void)monitoringNetworkState:(void (^)(NSInteger status))block;
+
 + (instancetype)shareManager;
 
 /**

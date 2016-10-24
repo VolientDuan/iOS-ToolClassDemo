@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [RequestTool monitoringNetworkState:^(NSInteger status) {
+       //这里可以根据返回的网络情况进行一些操作
+        NSLog(@"status:%ld",status);
+    }];
     return YES;
 }
 
