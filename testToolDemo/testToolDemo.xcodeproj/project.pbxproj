@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		2C03A2A01D1BA92D00DC5404 /* name.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2C03A29F1D1BA92D00DC5404 /* name.gif */; };
+		2C070AE91DBF4FD300F1F157 /* VDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C070AE81DBF4FD300F1F157 /* VDTextField.m */; };
+		2C070AF31DBF4FE000F1F157 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C070AEC1DBF4FE000F1F157 /* BDKNotifyHUD.m */; };
+		2C070AF41DBF4FE000F1F157 /* KeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C070AEE1DBF4FE000F1F157 /* KeyChain.m */; };
+		2C070AF51DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C070AF01DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m */; };
+		2C070AF61DBF4FE000F1F157 /* VDCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C070AF21DBF4FE000F1F157 /* VDCustomAlertView.m */; };
 		2C0FEEEC1D29F42200A7E54D /* NSString+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEE21D29F42200A7E54D /* NSString+tool.m */; };
 		2C0FEEED1D29F42200A7E54D /* UIControl+clickRepeatedly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEE41D29F42200A7E54D /* UIControl+clickRepeatedly.m */; };
 		2C0FEEEE1D29F42200A7E54D /* UIImage+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEE61D29F42200A7E54D /* UIImage+tool.m */; };
 		2C0FEEEF1D29F42200A7E54D /* UIView+EmptyShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEE81D29F42200A7E54D /* UIView+EmptyShow.m */; };
 		2C0FEEF01D29F42200A7E54D /* UIView+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEEA1D29F42200A7E54D /* UIView+tool.m */; };
 		2C0FEEF31D29F44900A7E54D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEF21D29F44900A7E54D /* UserInfoModel.m */; };
-		2C2CE8181D6076020040F684 /* toast in Resources */ = {isa = PBXBuildFile; fileRef = 2C2CE8171D6076020040F684 /* toast */; };
 		2C6A93021D2C9A7100A204FF /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93011D2C9A7100A204FF /* RequestTool.m */; };
 		2C6A93051D2CCDB300A204FF /* NSObject+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93041D2CCDB300A204FF /* NSObject+Unicode.m */; };
 		2C886E661D2A49D9005A6D36 /* RequestManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C886E651D2A49D9005A6D36 /* RequestManage.m */; };
@@ -33,6 +37,16 @@
 		263243D356B10090C23BEA14 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2C00AA191D23A05F003076E1 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2C03A29F1D1BA92D00DC5404 /* name.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = name.gif; sourceTree = "<group>"; };
+		2C070AE71DBF4FD300F1F157 /* VDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VDTextField.h; sourceTree = "<group>"; };
+		2C070AE81DBF4FD300F1F157 /* VDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VDTextField.m; sourceTree = "<group>"; };
+		2C070AEB1DBF4FE000F1F157 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKNotifyHUD.h; sourceTree = "<group>"; };
+		2C070AEC1DBF4FE000F1F157 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
+		2C070AED1DBF4FE000F1F157 /* KeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChain.h; sourceTree = "<group>"; };
+		2C070AEE1DBF4FE000F1F157 /* KeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChain.m; sourceTree = "<group>"; };
+		2C070AEF1DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OAURLEncodingAdditions.h"; sourceTree = "<group>"; };
+		2C070AF01DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OAURLEncodingAdditions.m"; sourceTree = "<group>"; };
+		2C070AF11DBF4FE000F1F157 /* VDCustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VDCustomAlertView.h; sourceTree = "<group>"; };
+		2C070AF21DBF4FE000F1F157 /* VDCustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VDCustomAlertView.m; sourceTree = "<group>"; };
 		2C0FEEE11D29F42200A7E54D /* NSString+tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+tool.h"; sourceTree = "<group>"; };
 		2C0FEEE21D29F42200A7E54D /* NSString+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+tool.m"; sourceTree = "<group>"; };
 		2C0FEEE31D29F42200A7E54D /* UIControl+clickRepeatedly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+clickRepeatedly.h"; sourceTree = "<group>"; };
@@ -45,7 +59,6 @@
 		2C0FEEEA1D29F42200A7E54D /* UIView+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tool.m"; sourceTree = "<group>"; };
 		2C0FEEF11D29F44900A7E54D /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		2C0FEEF21D29F44900A7E54D /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
-		2C2CE8171D6076020040F684 /* toast */ = {isa = PBXFileReference; lastKnownFileType = folder; path = toast; sourceTree = "<group>"; };
 		2C6A93001D2C9A7100A204FF /* RequestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTool.h; sourceTree = "<group>"; };
 		2C6A93011D2C9A7100A204FF /* RequestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTool.m; sourceTree = "<group>"; };
 		2C6A93031D2CCDB300A204FF /* NSObject+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Unicode.h"; sourceTree = "<group>"; };
@@ -81,10 +94,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C070AE61DBF4FD300F1F157 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				2C070AE71DBF4FD300F1F157 /* VDTextField.h */,
+				2C070AE81DBF4FD300F1F157 /* VDTextField.m */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		2C070AEA1DBF4FE000F1F157 /* toast */ = {
+			isa = PBXGroup;
+			children = (
+				2C070AEB1DBF4FE000F1F157 /* BDKNotifyHUD.h */,
+				2C070AEC1DBF4FE000F1F157 /* BDKNotifyHUD.m */,
+				2C070AED1DBF4FE000F1F157 /* KeyChain.h */,
+				2C070AEE1DBF4FE000F1F157 /* KeyChain.m */,
+				2C070AEF1DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.h */,
+				2C070AF01DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m */,
+				2C070AF11DBF4FE000F1F157 /* VDCustomAlertView.h */,
+				2C070AF21DBF4FE000F1F157 /* VDCustomAlertView.m */,
+			);
+			path = toast;
+			sourceTree = "<group>";
+		};
 		2C0FEEDF1D29F42200A7E54D /* tool */ = {
 			isa = PBXGroup;
 			children = (
-				2C2CE8171D6076020040F684 /* toast */,
+				2C070AEA1DBF4FE000F1F157 /* toast */,
+				2C070AE61DBF4FD300F1F157 /* custom */,
 				2CE1242F1D2E1ED400EEB134 /* util */,
 				2C0FEEF41D2A02E600A7E54D /* request */,
 				2C0FEEE01D29F42200A7E54D /* category */,
@@ -272,7 +310,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C2CE8181D6076020040F684 /* toast in Resources */,
 				2C9381C01D1A94E6009F41C2 /* LaunchScreen.storyboard in Resources */,
 				2C03A2A01D1BA92D00DC5404 /* name.gif in Resources */,
 				2CFAB8111D24FFAA002563AF /* noOrder.png in Resources */,
@@ -337,11 +374,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C9381B81D1A94E6009F41C2 /* ViewController.m in Sources */,
+				2C070AF41DBF4FE000F1F157 /* KeyChain.m in Sources */,
+				2C070AF31DBF4FE000F1F157 /* BDKNotifyHUD.m in Sources */,
+				2C070AF51DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m in Sources */,
 				2C9381B51D1A94E6009F41C2 /* AppDelegate.m in Sources */,
 				2C0FEEF31D29F44900A7E54D /* UserInfoModel.m in Sources */,
+				2C070AE91DBF4FD300F1F157 /* VDTextField.m in Sources */,
 				2C6A93021D2C9A7100A204FF /* RequestTool.m in Sources */,
 				2CE124321D2E1F0000EEB134 /* NSStringUtil.m in Sources */,
 				2C0FEEF01D29F42200A7E54D /* UIView+tool.m in Sources */,
+				2C070AF61DBF4FE000F1F157 /* VDCustomAlertView.m in Sources */,
 				2C9381B21D1A94E6009F41C2 /* main.m in Sources */,
 				2C0FEEEC1D29F42200A7E54D /* NSString+tool.m in Sources */,
 				2C6A93051D2CCDB300A204FF /* NSObject+Unicode.m in Sources */,
