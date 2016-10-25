@@ -139,3 +139,7 @@ UserInfoModel:实现一些轻量级的用户信息存储
 4.身份证号验证
 
 	+(BOOL) isValidateIDCardNo:(NSString *)idCardNo
+##### 八、自定义
+1.自定义弹框（block）
+
+2.自定义UITextField:方便设置长度限制、禁止复制粘贴、占位符的颜色和字体大小等等
