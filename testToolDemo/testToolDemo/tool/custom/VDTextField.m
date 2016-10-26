@@ -33,7 +33,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        [[NSNotificationCenter defaultCenter]removeObserver:self];
+
     }
     return self;
 }
@@ -68,6 +68,9 @@
 - (void)setMaxLength:(NSInteger)maxLength{
     if (maxLength>0&&_maxLength==0) {
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(vdtextFiledEditChanged:) name:@"UITextFieldTextDidChangeNotification" object:self];
+    }
+    else if (maxLength<=0){
+        [[NSNotificationCenter defaultCenter]removeObserver:self];
     }
     _maxLength = maxLength;
 }
