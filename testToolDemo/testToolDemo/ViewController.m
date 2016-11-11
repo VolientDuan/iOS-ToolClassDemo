@@ -50,7 +50,6 @@
     [super viewDidLoad];
     if (_vcType == 0) {
         VDLog(@"很好用的");
-        
         self.title = @"傻傻的你";
         //UserInfoModel(单例)的使用
         [UserInfoModel sharedManage].token = [NSString getDeviceIdentifierForVendor];
