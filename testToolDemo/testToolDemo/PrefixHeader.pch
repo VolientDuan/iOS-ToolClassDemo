@@ -12,6 +12,7 @@
 #import "UserInfoModel.h"
 #import "RequestTool.h"
 #import "NSString+tool.h"
+#import "UIView+tool.h"
 
 #if TARGET_IPHONE_SIMULATOR//模拟器
 #define PHONE_MARK  0

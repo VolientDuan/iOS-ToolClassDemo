@@ -34,7 +34,7 @@
     self = [super initWithFrame:CGRectMake(0, GetFloatContrastHightWithPX(160.0), ALERT_MSG_WIDTH, ALERT_MSG_HIGHT)];
     self.v_centerX = SCREEN_WIDTH/2;
     if (self) {
-        self.backgroundColor = UIColorFromRGB(WHITE_COLOR);
+        self.backgroundColor = UIColorFromRGB(0xffffff);
         [self prepareMsgView:msg];
         self.v_cornerRadius = GetFloatContrastHightWithPX(4.0);
     }
@@ -43,7 +43,7 @@
 
 - (void)show{
     self.bgView = [[UIControl alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.bgView.backgroundColor = UIColorFromRGBWithAlpha(MAIN_BLACK_COLOR, 0.3);
+    self.bgView.backgroundColor = UIColorFromRGB(0xeeeeee);
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     [keyWindow addSubview:self.bgView];
     [keyWindow addSubview:self];
@@ -65,14 +65,14 @@
     UIButton *okButton = [UIButton buttonWithType:UIButtonTypeSystem];
     okButton.frame = CGRectMake(0, GetFloatContrastHightWithPX(75), self.v_w/2, ALERT_MSG_HIGHT-GetFloatContrastHightWithPX(75.0));
     okButton.titleLabel.font = [UIFont systemFontOfSize:GetFloatContrastHightWithPX(12.0)];
-    [okButton setTitleColor:UIColorFromRGB(THEME_COLOR) forState:UIControlStateNormal];
+    [okButton setTitleColor:UIColorFromRGB(0x123456) forState:UIControlStateNormal];
     [okButton setTitle:@"确认" forState:UIControlStateNormal];
     [okButton addTarget:self action:@selector(okClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:okButton];
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
     cancelButton.frame = CGRectMake(self.v_w/2, GetFloatContrastHightWithPX(75), self.v_w/2, ALERT_MSG_HIGHT-GetFloatContrastHightWithPX(75.0));
     cancelButton.titleLabel.font = [UIFont systemFontOfSize:GetFloatContrastHightWithPX(12.0)];
-    [cancelButton setTitleColor:UIColorFromRGB(MAIN_BLACK_COLOR) forState:UIControlStateNormal];
+    [cancelButton setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cancelButton];
@@ -80,11 +80,11 @@
     //划线
     UIView *shuXian = [[UIView alloc]initWithFrame:CGRectMake(0, GetFloatContrastHightWithPX(75), 1.0, ALERT_MSG_HIGHT-GetFloatContrastHightWithPX(75.0))];
     shuXian.v_centerX = self.v_w/2;
-    shuXian.backgroundColor = UIColorFromRGB(TABLEVIEW_LINE_COLOR);
+    shuXian.backgroundColor = UIColorFromRGB(0xadadad);
     [self addSubview:shuXian];
     UIView *hongXian = [[UIView alloc]initWithFrame:CGRectMake(0, GetFloatContrastHightWithPX(75), self.v_w, 1.0)
                         ];
-    hongXian.backgroundColor = UIColorFromRGB(TABLEVIEW_LINE_COLOR);
+    hongXian.backgroundColor = UIColorFromRGB(0xadadad);
     [self addSubview:hongXian];
     
     //标签
@@ -93,7 +93,7 @@
     CGRect rect = [msg boundingRectWithSize:CGSizeMake(ALERT_MSG_WIDTH-GetFloatContrastHightWithPX(40.0), GetFloatContrastHightWithPX(50)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_msgLabel.font} context:nil];
     _msgLabel.frame = CGRectMake(GetFloatContrastHightWithPX(20.0), GetFloatContrastHightWithPX(32.0)+GetFloatContrastHightWithPX(6.0)-rect.size.height/2, ALERT_MSG_WIDTH-GetFloatContrastHightWithPX(40.0), rect.size.height);
     _msgLabel.numberOfLines = 0;
-    _msgLabel.textColor = UIColorFromRGB(MAIN_BLACK_COLOR);
+    _msgLabel.textColor = UIColorFromRGB(0xadadad);
     _msgLabel.textAlignment = NSTextAlignmentCenter;
     self.msgLabel.text = msg;
     if (rect.size.height > GetFloatContrastHightWithPX(12.0)*3) {

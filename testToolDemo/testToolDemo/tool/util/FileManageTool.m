@@ -87,9 +87,14 @@
     return [fileData writeToFile:filePath atomically:YES];
 }
 
-- (BOOL)writeToFileWithContent:(NSString *)content path:(NSString *)path{
-    
-    return [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+- (BOOL)writeToFileWithContent:(id)content path:(NSString *)path{
+    //文件的读取可以直接使用NSArray，NSDictionary和NSString的相应方法
+    if ([content isKindOfClass:[NSString class]]) {
+        return [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
+    else{
+        return [content writeToFile:path atomically:YES];
+    }
 }
 - (NSString *)readFileContentWithFilePath:(NSString *)path{
     

@@ -11,6 +11,7 @@
 #import "NSString+tool.h"
 #import "UIImage+tool.h"
 #import "UIView+EmptyShow.h"
+#import "FileManageTool.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 
@@ -49,18 +50,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (_vcType == 0) {
-        VDLog(@"很好用的");
-        self.title = @"傻傻的你";
-        //UserInfoModel(单例)的使用
-        [UserInfoModel sharedManage].token = [NSString getDeviceIdentifierForVendor];
-        [UserInfoModel sharedManage].userName = @"volientDuan";
-        [UserInfoModel sharedManage].isBind = YES;
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 33)];
+        btn.center = self.view.center;
+        btn.backgroundColor = [UIColor greenColor];
+        [self.view addSubview:btn];
+        [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
         
-        VDLog(@"token:%@;\nuserName:%@",[UserInfoModel sharedManage].token,[UserInfoModel sharedManage].userName);
-        
-        //监听用户信息中token的变化（可能有些小伙伴会用到这种监听用户某个信息的变化的变态需求）
-        [[UserInfoModel sharedManage] addObserver:self forKeyPath:@"token" options:NSKeyValueObservingOptionNew context:nil];
-        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeToken) userInfo:nil repeats:YES];
+        NSString *path = [[FileManageTool shareManager]createFilePathWithFileName:@"test.txt" folder:@"test" type:VDFileTypeDocument];
+        BOOL isSuccess = [[FileManageTool shareManager]writeToFileWithContent:@[@"1",@"2",@"3"] path:path];
+        VDLog(@"%@", [NSString stringWithFormat:@"%@",isSuccess?@"保存成功":@"保存失败"]);
+        if (isSuccess) {
+            NSArray *arr = [NSArray arrayWithContentsOfFile:path];
+            VDLog(@"文件内容：\n%@",[arr description]);
+        }
+//        VDLog(@"很好用的");
+//        self.title = @"傻傻的你";
+//        //UserInfoModel(单例)的使用
+//        [UserInfoModel sharedManage].token = [NSString getDeviceIdentifierForVendor];
+//        [UserInfoModel sharedManage].userName = @"volientDuan";
+//        [UserInfoModel sharedManage].isBind = YES;
+//        
+//        VDLog(@"token:%@;\nuserName:%@",[UserInfoModel sharedManage].token,[UserInfoModel sharedManage].userName);
+//        
+//        //监听用户信息中token的变化（可能有些小伙伴会用到这种监听用户某个信息的变化的变态需求）
+//        [[UserInfoModel sharedManage] addObserver:self forKeyPath:@"token" options:NSKeyValueObservingOptionNew context:nil];
+//        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeToken) userInfo:nil repeats:YES];
     }else{
         _dataArray = [NSMutableArray array];
         
@@ -72,22 +86,17 @@
     }
     
 
-#pragma mark [普通http请求]
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"红烧肉" forKey:@"menu"];
-    [params setObject:MENU_APPKEY forKey:@"key"];
-    [[RequestTool shareManager]sendRequestWithAPI:@"/cook/query.php" withVC:self withParams:params withClass:nil responseBlock:^(id response, BOOL isError, NSString *errorMessage, NSInteger errorCode) {
-        
-    }];
+//#pragma mark [普通http请求]
+//    
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:@"红烧肉" forKey:@"menu"];
+//    [params setObject:MENU_APPKEY forKey:@"key"];
+//    [[RequestTool shareManager]sendRequestWithAPI:@"/cook/query.php" withVC:self withParams:params withClass:nil responseBlock:^(id response, BOOL isError, NSString *errorMessage, NSInteger errorCode) {
+//        
+//    }];
     
     
 ////调试自己写的工具类真的很累哦
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 33)];
-    btn.center = self.view.center;
-    btn.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:btn];
-    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
 //    UIView *bgView = [[UIView alloc]init];
 //    bgView.backgroundColor = [UIColor orangeColor];
 //    [self.view addSubview:bgView];
@@ -187,32 +196,33 @@ static NSInteger tokenIndex;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (![_dataArray[indexPath.row] isEqualToString:@"👌~\(^o^)/~"]) {
-#pragma mark [创建下载任务]
-        [[RequestTool shareManager]createDownloadTaskWithURL:@"https://github.com/VolientDuan/iOS-ToolClassDemo/archive/master.zip" withFileName:@"ToolClassDemo.zip" Task:^(NSURLSessionDownloadTask *task) {
-            NSLog(@"taskDescription:%@",task.taskDescription);
-        } Progress:^(float progress, NSString *taskDesc) {
-            [_dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (![(NSString *)obj isEqualToString:@"👌~\(^o^)/~"]) {
-                    NSIndexPath *indexP = [NSIndexPath indexPathForRow:idx inSection:0];
-                    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexP];
-                     _dataArray[indexP.row] = [NSString stringWithFormat:@"%.3f",progress];
-                    if (progress >= 1.) {
-                        _dataArray[indexP.row] = @"下载完成";
-                    }
-                    cell.textLabel.text = _dataArray[indexP.row];
-                }
-            }];
-            VDLog(@"%@:%@",taskDesc,[NSString stringWithFormat:@"%f",progress]);
-        } Result:^(id response, BOOL isError) {
-            
-        }];
-    }
-    else{
-        [_dataArray removeObjectAtIndex:indexPath.row];
-        [_tableView reloadData];
-    }
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    if (![_dataArray[indexPath.row] isEqualToString:@"👌~\(^o^)/~"]) {
+//#pragma mark [创建下载任务]
+//        [[RequestTool shareManager]createDownloadTaskWithURL:@"https://github.com/VolientDuan/iOS-ToolClassDemo/archive/master.zip" withFileName:@"ToolClassDemo.zip" Task:^(NSURLSessionDownloadTask *task) {
+//            NSLog(@"taskDescription:%@",task.taskDescription);
+//        } Progress:^(float progress, NSString *taskDesc) {
+//            [_dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (![(NSString *)obj isEqualToString:@"👌~\(^o^)/~"]) {
+//                    NSIndexPath *indexP = [NSIndexPath indexPathForRow:idx inSection:0];
+//                    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexP];
+//                     _dataArray[indexP.row] = [NSString stringWithFormat:@"%.3f",progress];
+//                    if (progress >= 1.) {
+//                        _dataArray[indexP.row] = @"下载完成";
+//                    }
+//                    cell.textLabel.text = _dataArray[indexP.row];
+//                }
+//            }];
+//            VDLog(@"%@:%@",taskDesc,[NSString stringWithFormat:@"%f",progress]);
+//        } Result:^(id response, BOOL isError) {
+//            
+//        }];
+//    }
+//    else{
+//        [_dataArray removeObjectAtIndex:indexPath.row];
+//        [_tableView reloadData];
+//    }
 
 }
 

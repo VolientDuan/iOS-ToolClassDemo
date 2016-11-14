@@ -27,16 +27,72 @@ typedef void(^FileCallBack)(BOOL isSuccess,NSString *filePath);
 
 + (instancetype)shareManager;
 
+/**
+ 创建文件路径
+
+ @param fileName 文件名
+ @param folder   子文件夹
+ @param type     文件父目录
+
+ @return 文件的绝对路径
+ */
 - (NSString *)createFilePathWithFileName:(NSString *)fileName folder:(NSString *)folder type:(VDFileType)type;
 
+/**
+ 保存文件
+
+ @param file     文件（支持Data和image）
+ @param filePath 文件的绝对路径
+
+ @return 结果
+ */
 - (BOOL)saveToLocalFolderWithFile:(id)file withFilePath:(NSString *)filePath;
 
-- (BOOL)writeToFileWithContent:(NSString *)content path:(NSString *)path;
+/**
+ 文件的写入
+
+ @param content 支持字符串数组和字典
+ @param path    文件路径
+
+ @return 结果
+ */
+- (BOOL)writeToFileWithContent:(id)content path:(NSString *)path;
+
+/**
+ 读取文件中的字符串信息
+
+ @param path 文件路径
+
+ @return 字符串
+ */
 - (NSString *)readFileContentWithFilePath:(NSString *)path;
 
+
+/**
+ 删除文件
+
+ @param path 文件路径
+
+ @return 结果
+ */
 - (BOOL)deleteFileWithFilePath:(NSString *)path;
 
+/**
+ 获取文件夹大小
+
+ @param path 文件夹的路径
+
+ @return 大小（B）
+ */
 - (unsigned long long)folderSizeAtPath:(NSString *)path;
+
+/**
+ 获取单个文件的大小
+
+ @param path 文件路径
+
+ @return 大小（B）
+ */
 - (unsigned long long)fileSizeAtPath:(NSString *)path;
 
 

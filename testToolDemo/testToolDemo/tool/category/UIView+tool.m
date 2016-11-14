@@ -28,7 +28,13 @@
 - (CGFloat)v_h{
     return self.frame.size.height;
 }
+- (CGFloat)v_centerX{
+    return self.center.x;
+}
 
+- (CGFloat)v_centerY{
+    return self.center.y;
+}
 // [SET方法]
 
 - (void)setV_x:(CGFloat)v_x{
@@ -47,7 +53,13 @@
     self.frame = CGRectMake(self.v_x, self.v_y, self.v_w, v_h);
 }
 
+- (void)setV_centerX:(CGFloat)v_centerX{
+    self.center = CGPointMake(v_centerX, self.v_centerY);
+}
 
+- (void)setV_centerY:(CGFloat)v_centerY{
+    self.center = CGPointMake(self.v_centerX, v_centerY);
+}
 #pragma mark [layer]
 
 - (CGFloat)v_cornerRadius{
