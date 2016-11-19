@@ -19,6 +19,7 @@
 		2C0FEEEF1D29F42200A7E54D /* UIView+EmptyShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEE81D29F42200A7E54D /* UIView+EmptyShow.m */; };
 		2C0FEEF01D29F42200A7E54D /* UIView+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEEA1D29F42200A7E54D /* UIView+tool.m */; };
 		2C0FEEF31D29F44900A7E54D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FEEF21D29F44900A7E54D /* UserInfoModel.m */; };
+		2C17BD2E1DE05178008C6D8D /* VDGifPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C17BD2D1DE05178008C6D8D /* VDGifPlayerTool.m */; };
 		2C545A3C1DD565A500E7B31E /* FileManageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C545A391DD565A500E7B31E /* FileManageTool.m */; };
 		2C545A3D1DD565A500E7B31E /* VDJumpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C545A3B1DD565A500E7B31E /* VDJumpTool.m */; };
 		2C6A93021D2C9A7100A204FF /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93011D2C9A7100A204FF /* RequestTool.m */; };
@@ -61,6 +62,8 @@
 		2C0FEEEA1D29F42200A7E54D /* UIView+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tool.m"; sourceTree = "<group>"; };
 		2C0FEEF11D29F44900A7E54D /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		2C0FEEF21D29F44900A7E54D /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		2C17BD2C1DE05178008C6D8D /* VDGifPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VDGifPlayerTool.h; sourceTree = "<group>"; };
+		2C17BD2D1DE05178008C6D8D /* VDGifPlayerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VDGifPlayerTool.m; sourceTree = "<group>"; };
 		2C545A381DD565A500E7B31E /* FileManageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManageTool.h; sourceTree = "<group>"; };
 		2C545A391DD565A500E7B31E /* FileManageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManageTool.m; sourceTree = "<group>"; };
 		2C545A3A1DD565A500E7B31E /* VDJumpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VDJumpTool.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				2C545A3B1DD565A500E7B31E /* VDJumpTool.m */,
 				2CE124301D2E1F0000EEB134 /* NSStringUtil.h */,
 				2CE124311D2E1F0000EEB134 /* NSStringUtil.m */,
+				2C17BD2C1DE05178008C6D8D /* VDGifPlayerTool.h */,
+				2C17BD2D1DE05178008C6D8D /* VDGifPlayerTool.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				2C070AF51DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m in Sources */,
 				2C9381B51D1A94E6009F41C2 /* AppDelegate.m in Sources */,
 				2C0FEEF31D29F44900A7E54D /* UserInfoModel.m in Sources */,
+				2C17BD2E1DE05178008C6D8D /* VDGifPlayerTool.m in Sources */,
 				2C070AE91DBF4FD300F1F157 /* VDTextField.m in Sources */,
 				2C545A3D1DD565A500E7B31E /* VDJumpTool.m in Sources */,
 				2C6A93021D2C9A7100A204FF /* RequestTool.m in Sources */,
