@@ -60,19 +60,18 @@
     }
     
     //跳转的一些处理 完全可以自定义
-    //有导航控制器直接push过去
-    if (visibleVC.navigationController == navi&&navi) {
-        [visibleVC.navigationController pushViewController:jumpVC animated:YES];
-    }
-    //当前页就是需要跳转的控制器在这处理
-    else if ([visibleVC isKindOfClass:jumpVC.class]){
+    if ([visibleVC isKindOfClass:jumpVC.class]){//需要跳转的页面就是当前页
         
+    }else{//执行跳转
+        //有导航控制器直接push过去
+        if (visibleVC.navigationController == navi&&navi) {
+            [visibleVC.navigationController pushViewController:jumpVC animated:YES];
+        }
+        //当前页无导航控制器可以直接模态过去
+        else{
+            [visibleVC presentViewController:jumpVC animated:YES completion:nil];
+        }
     }
-    //当前页无导航控制器可以直接模态过去
-    else{
-        [visibleVC presentViewController:jumpVC animated:YES completion:nil];
-    }
-    
     
 }
 
