@@ -1,3 +1,11 @@
-pod 'Masonry'
-pod 'AFNetworking'
-pod 'SVProgressHUD'
+platform :ios, '8.0'
+def pods
+    pod 'Masonry'
+    pod 'AFNetworking'
+    pod 'SVProgressHUD'
+    pod 'FMDB'
+end
+target 'testToolDemo' do
+    pods
+end
+
