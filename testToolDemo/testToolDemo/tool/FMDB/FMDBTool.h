@@ -21,13 +21,9 @@ typedef void(^ReslutCallback)(int result,FMDatabase *db);
  */
 - (void)createTable:(NSString *)name callback:(DBReslutCallback)callback;
 
-/**
- 创建表
+- (void)createTable:(NSString *)name class:(Class)model callback:(DBReslutCallback)callback;
 
- @param name 表名
- @param class 类
- */
-- (void)createTable:(NSString *)name class:(Class)class;
+- (void)insert:(id)data toTable:(NSString *)name;
 /**
  表是否存在
 
@@ -67,10 +63,5 @@ typedef void(^ReslutCallback)(int result,FMDatabase *db);
 
 #pragma mark - 根据需要自定义操作
 
-//- (void)updateSecondViewData:(NSArray *)data;
-//
-//- (void)appendSecondViewData:(NSArray *)data;
-//
-//- (NSMutableArray *)getSecondViewData:(void(^)(NSMutableArray *data))callback;
 
 @end

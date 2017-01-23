@@ -12,6 +12,20 @@
 #define DBNAME @"myApp.sqlite"
 #define DBPATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:DBNAME]
 
+/**
+ 数据类型（除了数组其它数据类型的数据结构只能是单层）
+
+ - FMDBDataTypeInvalid: 无效
+ - FMDBDataTypeModel: 实体类(可以自定义一个BaseModel)
+ - FMDBDataTypeDictionary: 字典
+ - FMDBDataTypeArray: 数组
+ */
+typedef NS_ENUM(NSInteger, FMDBDataType){
+    FMDBDataTypeInvalid = 0,
+    FMDBDataTypeModel,
+    FMDBDataTypeDictionary,
+    FMDBDataTypeArray
+};
 @interface FMDBTool()
 @property (nonatomic, strong)FMDatabaseQueue *queue;
 
@@ -43,6 +57,14 @@
     }];
     return result;
 }
+- (void)openDB:(DBReslutCallback)callback{
+    if (!self.queue) {
+        self.queue = [FMDatabaseQueue databaseQueueWithPath:DBPATH];
+    }
+    [self.queue inDatabase:^(FMDatabase *db) {
+        callback(YES,db);
+    }];
+}
 - (BOOL)deleteDB:(NSString *)path{
     BOOL success;
     NSError *error;
@@ -58,26 +80,40 @@
     return YES;
 }
 - (void)createTable:(NSString *)name callback:(DBReslutCallback)callback{
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [self openDB:^(int result, FMDatabase *db) {
         callback([db executeUpdate:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer PRIMARY KEY AUTOINCREMENT);",name]],db);
     }];
 }
-- (void)createTable:(NSString *)name class:(Class)class{
+- (void)createTable:(NSString *)name class:(__unsafe_unretained Class)model callback:(DBReslutCallback)callback{
     NSString *sql1 = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@",name];
     NSMutableString *properties = [[NSMutableString alloc]initWithString:@"id integer PRIMARY KEY AUTOINCREMENT"];
-    for (NSString *p in [self getProperties:class]) {
+    for (NSString *p in [self getProperties:model]) {
         [properties appendString:[NSString stringWithFormat:@",%@ text",p]];
     }
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [self openDB:^(int result, FMDatabase *db) {
         BOOL isCreated = [db executeUpdate:[NSString stringWithFormat:@"%@(%@)",sql1,properties]];
-        NSLog(@"createTable---%d",isCreated);
+        NSLog(@"%@ is created %@!",name,isCreated?@"success":@"fail");
+        callback(isCreated,db);
     }];
 }
 - (void)insert:(id)data toTable:(NSString *)name{
-    if ([data isKindOfClass:[NSString class]]||[data isKindOfClass:[NSNumber class]]) {
-        NSLog(@"不支持该类型数据插入");
-    }
+    FMDBDataType type = [self checkData:data];
+    [self openDB:^(int result, FMDatabase *db) {
+        if (type == FMDBDataTypeArray) {
+            [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self splitModel:obj callback:^(NSArray *keys, NSArray *values) {
+                    [db executeUpdate:[self formartInsertSQL:name andKeys:keys] values:values error:nil];
+                }];
+            }];
+        }else if (type == FMDBDataTypeModel){
+            [self splitModel:data callback:^(NSArray *keys, NSArray *values) {
+                [db executeUpdate:[self formartInsertSQL:name andKeys:keys] values:values error:nil];
+            }];
+        }
+        
+    }];
 }
+
 - (void)isTable:(NSString *)name callback:(DBReslutCallback)callback{
     [self.queue inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db executeQuery:@"SELECT count(*) as 'count' FROM sqlite_master WHERE type ='table' and name = ?", name];
@@ -135,75 +171,62 @@
     
 }
 #pragma mark - 工具
-- (NSArray *)getProperties:(Class)model{
+
+- (NSArray *)getProperties:(Class)class{
     u_int count;
-    objc_property_t *properties = class_copyPropertyList([model class], &count);
+    objc_property_t *properties = class_copyPropertyList([class class], &count);
     NSMutableArray *propertiesArray = [NSMutableArray array];
     for (int i = 0; i < count; i++) {
-        const char* propertyName =property_getName(properties[i]);
+        const char* propertyName = property_getName(properties[i]);
         [propertiesArray addObject: [NSString stringWithUTF8String: propertyName]];
     }
     free(properties);
     return propertiesArray;
 }
+- (FMDBDataType)checkData:(id)data{
+    FMDBDataType type;
+    if ([data isKindOfClass:[NSString class]]||[data isKindOfClass:[NSNumber class]]) {
+        type = FMDBDataTypeInvalid;
+    }else if ([data isKindOfClass:[NSDictionary class]]){
+        type = FMDBDataTypeDictionary;
+    }else if ([data isKindOfClass:[NSArray class]]){
+        type = FMDBDataTypeArray;
+    }else{
+        type = FMDBDataTypeModel;
+    }
+    return type;
+}
+
+- (void)splitDic:(NSDictionary *)dic callback:(void(^)(NSArray *keys,NSArray *values))callback{
+    
+}
+
+- (void)splitModel:(id)model callback:(void(^)(NSArray *keys,NSArray *values))callback{
+    NSString *className = NSStringFromClass([model class]);
+    NSArray *keys = [self getProperties:NSClassFromString(className)];
+    NSMutableArray *values = [NSMutableArray array];
+    for (NSString *key in keys) {
+        [values addObject:[model valueForKey:key]];
+    }
+    callback(keys,values);
+}
+- (NSString *)formartInsertSQL:(NSString *)tableName andKeys:(NSArray *)keys{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"INSERT INTO %@",tableName];
+    NSMutableString *keySql,*valueSql;
+    for (NSString *key in keys) {
+        if (keySql) {
+            [keySql appendString:[NSString stringWithFormat:@", %@",key]];
+            [valueSql appendString:@",?"];
+        }else{
+            keySql = [[NSMutableString alloc]initWithString:key];
+            valueSql = [[NSMutableString alloc]initWithString:@"?"];
+        }
+    }
+    [sql appendString:[NSString stringWithFormat:@"(%@) VALUES (%@)",keySql,valueSql]];
+    return sql;
+}
+
 #pragma mark - 自定义操作
 
-//- (void)updateSecondViewData:(NSArray *)data{
-//    [self deleteTable:@"t_second" callback:^(int result, FMDatabase *db) {
-//        if (result) {
-//            BOOL isCreated = [db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_second (t_id integer PRIMARY KEY AUTOINCREMENT, symbol text NOT NULL, name text NOT NULL, trade text NOT NULL, pricechange text NOT NULL, changepercent text NOT NULL, buy text NOT NULL, sell text NOT NULL, settlement text NOT NULL, open text NOT NULL, high text NOT NULL, low text NOT NULL, volume text NOT NULL, amount text NOT NULL, code text NOT NULL, ticktime text NOT NULL);"];
-//            if (isCreated) {
-//                for (SecondModel *model in data) {
-//                    NSString *sql = @"INSERT INTO t_second(symbol,name,trade,pricechange,changepercent,buy,sell,settlement,open,high,low,volume,amount,code,ticktime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-//                    [db executeUpdate:sql,model.symbol,model.name,model.trade,model.pricechange,model.changepercent,model.buy,model.sell,model.settlement,model.open,model.high,model.low,model.volume,model.amount,model.code,model.ticktime];
-//                }
-//            }
-//        }
-//    }];
-//}
-//
-//- (void)appendSecondViewData:(NSArray *)data{
-//    [self.queue inDatabase:^(FMDatabase *db) {
-//        BOOL isCreated = [db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_second (t_id integer PRIMARY KEY AUTOINCREMENT, symbol text NOT NULL, name text NOT NULL, trade text NOT NULL, pricechange text NOT NULL, changepercent text NOT NULL, buy text NOT NULL, sell text NOT NULL, settlement text NOT NULL, open text NOT NULL, high text NOT NULL, low text NOT NULL, volume text NOT NULL, amount text NOT NULL, code text NOT NULL, ticktime text NOT NULL);"];
-//        if (isCreated) {
-//            for (SecondModel *model in data) {
-//                NSString *sql = @"INSERT INTO t_second(symbol,name,trade,pricechange,changepercent,buy,sell,settlement,open,high,low,volume,amount,code,ticktime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-//                [db executeUpdate:sql,model.symbol,model.name,model.trade,model.pricechange,model.changepercent,model.buy,model.sell,model.settlement,model.open,model.high,model.low,model.volume,model.amount,model.code,model.ticktime];
-//            }
-//        }
-//    }];
-//}
-//
-//- (NSMutableArray *)getSecondViewData:(void (^)(NSMutableArray *))callback{
-//    __block NSMutableArray *data = [NSMutableArray array];
-//    [self.queue inDatabase:^(FMDatabase *db) {
-//        if ([self checkDB]) {
-//            FMResultSet *resultSet = [db executeQuery:@"select * from t_second;"];
-//            while ([resultSet  next]) {
-//                SecondModel *model = [[SecondModel alloc]init];
-//                model.symbol = [resultSet objectForColumnName:@"symbol"];
-//                model.name = [resultSet objectForColumnName:@"name"];
-//                model.trade = [resultSet objectForColumnName:@"trade"];
-//                model.pricechange = [resultSet objectForColumnName:@"pricechange"];
-//                model.changepercent = [resultSet objectForColumnName:@"changepercent"];
-//                model.buy = [resultSet objectForColumnName:@"buy"];
-//                model.sell = [resultSet objectForColumnName:@"sell"];
-//                model.settlement = [resultSet objectForColumnName:@"settlement"];
-//                model.open = [resultSet objectForColumnName:@"open"];
-//                model.high = [resultSet objectForColumnName:@"high"];
-//                model.low = [resultSet objectForColumnName:@"low"];
-//                model.volume = [resultSet objectForColumnName:@"volume"];
-//                model.amount = [resultSet objectForColumnName:@"amount"];
-//                model.code = [resultSet objectForColumnName:@"code"];
-//                model.ticktime = [resultSet objectForColumnName:@"ticktime"];
-//                [data addObject:model];
-//            }
-//        }
-//    }];
-//    if (callback) {
-//        callback(data);
-//    }
-//    return data;
-//}
 
 @end
