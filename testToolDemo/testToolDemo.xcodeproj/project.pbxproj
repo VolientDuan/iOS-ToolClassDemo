@@ -24,6 +24,7 @@
 		2C545A3D1DD565A500E7B31E /* VDJumpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C545A3B1DD565A500E7B31E /* VDJumpTool.m */; };
 		2C6A93021D2C9A7100A204FF /* RequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93011D2C9A7100A204FF /* RequestTool.m */; };
 		2C6A93051D2CCDB300A204FF /* NSObject+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A93041D2CCDB300A204FF /* NSObject+Unicode.m */; };
+		2C76C9751EA9FCBB00EFEF53 /* VDSSetPageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76C9741EA9FCBB00EFEF53 /* VDSSetPageTool.m */; };
 		2C84744C1E348EF400DD5967 /* FMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84744B1E348EF400DD5967 /* FMDBTool.m */; };
 		2C886E661D2A49D9005A6D36 /* RequestManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C886E651D2A49D9005A6D36 /* RequestManage.m */; };
 		2C9381B21D1A94E6009F41C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9381B11D1A94E6009F41C2 /* main.m */; };
@@ -72,6 +73,8 @@
 		2C6A93011D2C9A7100A204FF /* RequestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTool.m; sourceTree = "<group>"; };
 		2C6A93031D2CCDB300A204FF /* NSObject+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Unicode.h"; sourceTree = "<group>"; };
 		2C6A93041D2CCDB300A204FF /* NSObject+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Unicode.m"; sourceTree = "<group>"; };
+		2C76C9731EA9FCBB00EFEF53 /* VDSSetPageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VDSSetPageTool.h; sourceTree = "<group>"; };
+		2C76C9741EA9FCBB00EFEF53 /* VDSSetPageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VDSSetPageTool.m; sourceTree = "<group>"; };
 		2C84744A1E348EF400DD5967 /* FMDBTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBTool.h; sourceTree = "<group>"; };
 		2C84744B1E348EF400DD5967 /* FMDBTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBTool.m; sourceTree = "<group>"; };
 		2C886E641D2A49D9005A6D36 /* RequestManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManage.h; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				2CE124311D2E1F0000EEB134 /* NSStringUtil.m */,
 				2C17BD2C1DE05178008C6D8D /* VDGifPlayerTool.h */,
 				2C17BD2D1DE05178008C6D8D /* VDGifPlayerTool.m */,
+				2C76C9731EA9FCBB00EFEF53 /* VDSSetPageTool.h */,
+				2C76C9741EA9FCBB00EFEF53 /* VDSSetPageTool.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				2C0FEEEC1D29F42200A7E54D /* NSString+tool.m in Sources */,
 				2C6A93051D2CCDB300A204FF /* NSObject+Unicode.m in Sources */,
 				2C886E661D2A49D9005A6D36 /* RequestManage.m in Sources */,
+				2C76C9751EA9FCBB00EFEF53 /* VDSSetPageTool.m in Sources */,
 				2C0FEEEF1D29F42200A7E54D /* UIView+EmptyShow.m in Sources */,
 				2C0FEEED1D29F42200A7E54D /* UIControl+clickRepeatedly.m in Sources */,
 				2C0FEEEE1D29F42200A7E54D /* UIImage+tool.m in Sources */,
