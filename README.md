@@ -1,8 +1,8 @@
 # iOS-ToolClassDemo
-###开发工具类(可以直接取出工程目录***[tool](https://github.com/VolientDuan/iOS-ToolClassDemo/tree/master/testToolDemo/testToolDemo/tool)***文件下的类使用)
-#####宏定义的使用
+### 开发工具类(可以直接取出工程目录***[tool](https://github.com/VolientDuan/iOS-ToolClassDemo/tree/master/testToolDemo/testToolDemo/tool)***文件下的类使用)
+##### 宏定义的使用
 
-######一、pch文件中宏的使用
+###### 一、pch文件中宏的使用
 
 1.屏幕的宽度和高度
 
@@ -27,8 +27,8 @@
 	#endif
 
 
-#####目前包含一下工具类：
-######一、NSString的扩展类
+##### 目前包含一下工具类：
+###### 一、NSString的扩展类
 
 1.NSString+tool
 
@@ -37,7 +37,7 @@
 * 时间戳转化为字符串
 * 富文本转化
 
-######二、UIView的扩展类
+###### 二、UIView的扩展类
 
 1.UIView+tool
 
@@ -59,20 +59,20 @@
 示例图：
 
 ![emptyOrder.png](https://github.com/VolientDuan/iOS-ToolClassDemo/blob/master/md+image/emptyOrder.png?raw=true)	                
-######三、UIImage的扩展类
+###### 三、UIImage的扩展类
 
 1.UIImage+tool：对image的尺寸和大小进行修改以及截图
 
-#####四、UIControl的扩展类
+##### 四、UIControl的扩展类
 1.UIControl+clickRepeatedly（处理按钮的反复点击）
 
 不用再纠结此类问题了，一句代码搞定：
 
 	btn.clickInterval = 3;
-#####五、用户信息（单例模式）
+##### 五、用户信息（单例模式）
 UserInfoModel:实现一些轻量级的用户信息存储
 
-#####六、AFNetWorking的二次封装（单例模式）
+##### 六、AFNetWorking的二次封装（单例模式）
 1.简单的HTTP（POST）请求：其中添加了多种请求错误判断和debug模式下打印响应成功的数据，最后采用block进行响应结果的回调
 
 	/**
@@ -126,7 +126,7 @@ UserInfoModel:实现一些轻量级的用户信息存储
 	                       Progress:(TaskProgress)progress
 	                         Result:(TaskResult)result;
                          
-#####七、校验工具类
+##### 七、校验工具类
 1.手机号校验
 
 	+(BOOL) isValidateMobile:(NSString *)mobile
