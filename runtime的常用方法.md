@@ -1,6 +1,6 @@
-##runtime的常用方法
+## runtime的常用方法
 
-###1.给类别加属性
+### 1.给类别加属性
 预设 char 值
 
 	static char WarningViewKey;
@@ -18,7 +18,7 @@ SET方法:`objc_setAssociatedObject`
 	    [self didChangeValueForKey:@"WarningViewKey"];
 	}
 
-###2.替换（重写）方法
+### 2.替换（重写）方法
 
 核心代码:
 
@@ -52,14 +52,14 @@ SET方法:`objc_setAssociatedObject`
 	    
 	}
 	
-###3.通过类名(字符串)初始化对象
+### 3.通过类名(字符串)初始化对象
 可以简化代码提高复用:`NSClassFromString`
 
 	Class classVC = NSClassFromString(@"类名");
 	[classVC new];
 
 
-###4.通过方法名(字符串)调用该方法
+### 4.通过方法名(字符串)调用该方法
 使用:`NSSelectorFromString`
 
 	SEL normalSelector = NSSelectorFromString(methodName);
