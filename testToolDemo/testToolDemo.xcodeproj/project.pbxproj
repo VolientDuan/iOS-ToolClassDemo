@@ -36,6 +36,8 @@
 		2CE124321D2E1F0000EEB134 /* NSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE124311D2E1F0000EEB134 /* NSStringUtil.m */; };
 		2CFAB8101D24FFAA002563AF /* netFail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFAB80E1D24FFAA002563AF /* netFail.png */; };
 		2CFAB8111D24FFAA002563AF /* noOrder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFAB80F1D24FFAA002563AF /* noOrder.png */; };
+		5AE11D561FA1FA8300E6B450 /* VDDropList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE11D551FA1FA8300E6B450 /* VDDropList.m */; };
+		5AE11D591FA1FE1800E6B450 /* DropCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE11D581FA1FE1800E6B450 /* DropCell.m */; };
 		7CC7DA764EED8D9ABC368D89 /* libPods-testToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF3A2ADE5409E2EE4334F68 /* libPods-testToolDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,10 @@
 		2CE124311D2E1F0000EEB134 /* NSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringUtil.m; sourceTree = "<group>"; };
 		2CFAB80E1D24FFAA002563AF /* netFail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = netFail.png; sourceTree = "<group>"; };
 		2CFAB80F1D24FFAA002563AF /* noOrder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noOrder.png; sourceTree = "<group>"; };
+		5AE11D541FA1FA8300E6B450 /* VDDropList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VDDropList.h; sourceTree = "<group>"; };
+		5AE11D551FA1FA8300E6B450 /* VDDropList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VDDropList.m; sourceTree = "<group>"; };
+		5AE11D571FA1FE1800E6B450 /* DropCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropCell.h; sourceTree = "<group>"; };
+		5AE11D581FA1FE1800E6B450 /* DropCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropCell.m; sourceTree = "<group>"; };
 		A79EA74B683220221B90FB79 /* Pods-testToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-testToolDemo/Pods-testToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CBF3A2ADE5409E2EE4334F68 /* libPods-testToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-testToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F911BF799CC8D0366175DA40 /* Pods-testToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-testToolDemo/Pods-testToolDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		2C070AE61DBF4FD300F1F157 /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				5AE11D531FA1FA6000E6B450 /* dropList */,
 				2C070AE71DBF4FD300F1F157 /* VDTextField.h */,
 				2C070AE81DBF4FD300F1F157 /* VDTextField.m */,
 			);
@@ -279,6 +286,17 @@
 			name = image;
 			sourceTree = "<group>";
 		};
+		5AE11D531FA1FA6000E6B450 /* dropList */ = {
+			isa = PBXGroup;
+			children = (
+				5AE11D541FA1FA8300E6B450 /* VDDropList.h */,
+				5AE11D551FA1FA8300E6B450 /* VDDropList.m */,
+				5AE11D571FA1FE1800E6B450 /* DropCell.h */,
+				5AE11D581FA1FE1800E6B450 /* DropCell.m */,
+			);
+			path = dropList;
+			sourceTree = "<group>";
+		};
 		B172EC1C0233C6E4B76F9C95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,9 +448,11 @@
 				2C84744C1E348EF400DD5967 /* FMDBTool.m in Sources */,
 				2C9381B21D1A94E6009F41C2 /* main.m in Sources */,
 				2C0FEEEC1D29F42200A7E54D /* NSString+tool.m in Sources */,
+				5AE11D561FA1FA8300E6B450 /* VDDropList.m in Sources */,
 				2C6A93051D2CCDB300A204FF /* NSObject+Unicode.m in Sources */,
 				2C886E661D2A49D9005A6D36 /* RequestManage.m in Sources */,
 				2C76C9751EA9FCBB00EFEF53 /* VDSSetPageTool.m in Sources */,
+				5AE11D591FA1FE1800E6B450 /* DropCell.m in Sources */,
 				2C0FEEEF1D29F42200A7E54D /* UIView+EmptyShow.m in Sources */,
 				2C0FEEED1D29F42200A7E54D /* UIControl+clickRepeatedly.m in Sources */,
 				2C0FEEEE1D29F42200A7E54D /* UIImage+tool.m in Sources */,
