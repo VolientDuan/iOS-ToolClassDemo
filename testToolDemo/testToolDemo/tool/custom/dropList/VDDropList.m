@@ -8,6 +8,20 @@
 
 #import "VDDropList.h"
 #import "DropCell.h"
+//容器的高度
+#define DROP_H 200.0
+//collectView的高度
+#define LIST_H 200.0
+
+/* item的布局基本设置 */
+//左右边距
+#define PITCH_X 20.0
+//上下边距
+#define PITCH_Y 20.0
+//cell的高度
+#define CELL_H 34.0
+//一行cell的个数
+#define CELL_N 3
 
 @interface VDDropList()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong)UIControl *bgView;
@@ -41,20 +55,18 @@
 - (UICollectionViewFlowLayout *)flowLayout{
     if (!_flowLayout) {
         _flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        CGFloat pitch = 20.0;
-        CGFloat w = (self.frame.size.width - pitch*4)/3;
-        CGFloat h = 34;
-        _flowLayout.itemSize = CGSizeMake(w, h);
-        _flowLayout.minimumLineSpacing = pitch;
-        _flowLayout.minimumInteritemSpacing = pitch;
-        _flowLayout.sectionInset = UIEdgeInsetsMake(pitch, pitch, pitch, pitch);
+        CGFloat w = (self.frame.size.width - PITCH_X*(CELL_N + 1))/CELL_N;
+        _flowLayout.itemSize = CGSizeMake(w, CELL_H);
+        _flowLayout.minimumLineSpacing = PITCH_Y;
+        _flowLayout.minimumInteritemSpacing = PITCH_X;
+        _flowLayout.sectionInset = UIEdgeInsetsMake(PITCH_Y, PITCH_X, PITCH_Y, PITCH_X);
         _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
     return _flowLayout;
 }
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:self.flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, LIST_H) collectionViewLayout:self.flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
@@ -64,18 +76,13 @@
     return _collectionView;
 }
 - (instancetype)init{
-    self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, DROP_H)];
     if (self) {
-        [self initUI];
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
 
-- (void)initUI{
-    self.backgroundColor = [UIColor whiteColor];
-    [self addSubview:self.collectionView];
-    
-}
 - (void)showList:(NSArray *)list selectIndex:(NSInteger)idx block:(void (^)(NSInteger))block{
     self.block = block;
     [self.dataArray removeAllObjects];

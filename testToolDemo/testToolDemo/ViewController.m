@@ -12,7 +12,7 @@
 #import "UIImage+tool.h"
 #import "UIView+EmptyShow.h"
 #import "FileManageTool.h"
-
+#import "VDDropList.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #define MENU_APPKEY @"e9d5a19b5d072b671ff9072cc31c61a8"
@@ -20,11 +20,19 @@
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
-
+//下拉列表
+@property (nonatomic, strong)VDDropList *dropList;
+//选择item
+@property (nonatomic, assign)NSInteger dropIndex;
 @end
 
 @implementation ViewController
-
+- (VDDropList *)dropList{
+    if (!_dropList) {
+        _dropList = [[VDDropList alloc]init];
+    }
+    return _dropList;
+}
 - (instancetype)init{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self = [sb instantiateViewControllerWithIdentifier:@"sbVc"];
@@ -38,7 +46,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     if (_vcType == 1) {
         [_tableView emptyDataCheckWithType:ViewDataTypeMyOrder andHaveData:NO andReloadBlock:^{
             [_dataArray addObjectsFromArray:@[@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"👌~\(^o^)/~",@"ToolClassDemo.zip"]];
@@ -158,9 +166,12 @@
 }
 
 - (void)btnClick{
-    ViewController *vc = [[ViewController alloc]init];
-    vc.vcType = 1;
-    [self.navigationController pushViewController:vc animated:YES];
+//    ViewController *vc = [[ViewController alloc]init];
+//    vc.vcType = 1;
+//    [self.navigationController pushViewController:vc animated:YES];
+    [self.dropList showList:@[@"好的",@"您好",@"您好",@"您好",@"您好",@"您好"] selectIndex:self.dropIndex block:^(NSInteger row) {
+        
+    }];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     NSLog(@"%@",[UserInfoModel sharedManage].token);
