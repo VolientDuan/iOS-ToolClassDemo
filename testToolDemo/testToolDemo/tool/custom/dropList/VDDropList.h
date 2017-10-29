@@ -10,6 +10,10 @@
 
 @interface VDDropList : UIView
 - (instancetype)init;
+//在初始化list后调用
+- (void)changeLayout;
+
 - (void)showList:(NSArray *)list selectIndex:(NSInteger)idx block:(void(^)(NSInteger row))block;
 - (void)hide;
+
 @end

@@ -38,6 +38,7 @@
 		2CFAB8111D24FFAA002563AF /* noOrder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFAB80F1D24FFAA002563AF /* noOrder.png */; };
 		5AE11D561FA1FA8300E6B450 /* VDDropList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE11D551FA1FA8300E6B450 /* VDDropList.m */; };
 		5AE11D591FA1FE1800E6B450 /* DropCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE11D581FA1FE1800E6B450 /* DropCell.m */; };
+		5AE506361FA5E06C003A1825 /* DropLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE506351FA5E06C003A1825 /* DropLayout.m */; };
 		7CC7DA764EED8D9ABC368D89 /* libPods-testToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF3A2ADE5409E2EE4334F68 /* libPods-testToolDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,8 @@
 		5AE11D551FA1FA8300E6B450 /* VDDropList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VDDropList.m; sourceTree = "<group>"; };
 		5AE11D571FA1FE1800E6B450 /* DropCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropCell.h; sourceTree = "<group>"; };
 		5AE11D581FA1FE1800E6B450 /* DropCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropCell.m; sourceTree = "<group>"; };
+		5AE506341FA5E06C003A1825 /* DropLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropLayout.h; sourceTree = "<group>"; };
+		5AE506351FA5E06C003A1825 /* DropLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropLayout.m; sourceTree = "<group>"; };
 		A79EA74B683220221B90FB79 /* Pods-testToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-testToolDemo/Pods-testToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CBF3A2ADE5409E2EE4334F68 /* libPods-testToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-testToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F911BF799CC8D0366175DA40 /* Pods-testToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-testToolDemo/Pods-testToolDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 				5AE11D551FA1FA8300E6B450 /* VDDropList.m */,
 				5AE11D571FA1FE1800E6B450 /* DropCell.h */,
 				5AE11D581FA1FE1800E6B450 /* DropCell.m */,
+				5AE506341FA5E06C003A1825 /* DropLayout.h */,
+				5AE506351FA5E06C003A1825 /* DropLayout.m */,
 			);
 			path = dropList;
 			sourceTree = "<group>";
@@ -434,6 +439,7 @@
 				2C070AF41DBF4FE000F1F157 /* KeyChain.m in Sources */,
 				2C070AF31DBF4FE000F1F157 /* BDKNotifyHUD.m in Sources */,
 				2C070AF51DBF4FE000F1F157 /* NSString+OAURLEncodingAdditions.m in Sources */,
+				5AE506361FA5E06C003A1825 /* DropLayout.m in Sources */,
 				2C9381B51D1A94E6009F41C2 /* AppDelegate.m in Sources */,
 				2C0FEEF31D29F44900A7E54D /* UserInfoModel.m in Sources */,
 				2C17BD2E1DE05178008C6D8D /* VDGifPlayerTool.m in Sources */,

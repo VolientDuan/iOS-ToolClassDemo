@@ -8,6 +8,7 @@
 
 #import "VDDropList.h"
 #import "DropCell.h"
+#import "DropLayout.h"
 //容器的高度
 #define DROP_H 200.0
 //collectView的高度
@@ -27,6 +28,7 @@
 @property (nonatomic, strong)UIControl *bgView;
 @property (nonatomic, strong)UICollectionView *collectionView;
 @property (nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic, strong)DropLayout *dropLayout;
 
 @property (nonatomic, strong)NSMutableArray *dataArray;
 @property (nonatomic, assign)NSInteger index;
@@ -34,6 +36,12 @@
 @end
 
 @implementation VDDropList
+- (DropLayout *)dropLayout{
+    if (!_dropLayout) {
+        _dropLayout = [[DropLayout alloc]init];
+    }
+    return _dropLayout;
+}
 - (UIControl *)bgView{
     if (!_bgView) {
         _bgView = [[UIControl alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
@@ -66,7 +74,7 @@
 }
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, LIST_H) collectionViewLayout:self.flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, LIST_H) collectionViewLayout:self.dropLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
@@ -82,7 +90,9 @@
     }
     return self;
 }
-
+- (void)changeLayout{
+    [self.dropLayout changeLayout];
+}
 - (void)showList:(NSArray *)list selectIndex:(NSInteger)idx block:(void (^)(NSInteger))block{
     self.block = block;
     [self.dataArray removeAllObjects];

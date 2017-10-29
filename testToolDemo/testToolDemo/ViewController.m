@@ -58,12 +58,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (_vcType == 0) {
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 33)];
-        btn.center = self.view.center;
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 50, 33)];
         btn.backgroundColor = [UIColor greenColor];
+        btn.tag = 1;
         [self.view addSubview:btn];
         [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
         
+        UIButton *changBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 33)];
+        changBtn.tag = 2;
+        changBtn.backgroundColor = [UIColor redColor];
+        [changBtn addTarget:self action:@selector(changeClick) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:changBtn];
         NSString *path = [[FileManageTool shareManager]createFilePathWithFileName:@"test.txt" folder:@"test" type:VDFileTypeDocument];
         BOOL isSuccess = [[FileManageTool shareManager]writeToFileWithContent:@[@"1",@"2",@"3"] path:path];
         VDLog(@"%@", [NSString stringWithFormat:@"%@",isSuccess?@"保存成功":@"保存失败"]);
@@ -164,13 +169,15 @@
     
     // Do any additional setup after loading the view, typically from a nib.
 }
-
+- (void)changeClick{
+    [self.dropList changeLayout];
+}
 - (void)btnClick{
 //    ViewController *vc = [[ViewController alloc]init];
 //    vc.vcType = 1;
 //    [self.navigationController pushViewController:vc animated:YES];
     [self.dropList showList:@[@"好的",@"您好",@"您好",@"您好",@"您好",@"您好"] selectIndex:self.dropIndex block:^(NSInteger row) {
-        
+        self.dropIndex = row;
     }];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
