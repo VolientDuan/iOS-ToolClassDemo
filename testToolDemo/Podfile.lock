@@ -18,20 +18,29 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - Masonry (1.0.1)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - AFNetworking
   - FMDB
   - Masonry
+  - ReactiveCocoa (~> 2.5)
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: ae095371ec933dee3a848814bcf502c197b66143
+PODFILE CHECKSUM: 7a9c0c1f04e7d4982ea5798450b999c20e767e0b
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.4.0.beta.2

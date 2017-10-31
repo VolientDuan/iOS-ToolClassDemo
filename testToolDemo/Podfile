@@ -4,6 +4,7 @@ def pods
     pod 'AFNetworking'
     pod 'SVProgressHUD'
     pod 'FMDB'
+    pod 'ReactiveCocoa', '~> 2.5'
 end
 target 'testToolDemo' do
     pods
